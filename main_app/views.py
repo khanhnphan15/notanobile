@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Meal, Photo, Reservation, AboutUs,Why_Choose_Us, Chef
+from .models import Meal, Photo, Reservation, AboutUs, Why_Choose_Us, Chef
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -67,10 +67,6 @@ def home(request):
     return render(request, 'home.html', context)
 
 
-
-
-
-
 def about(request):
     context = {
         "app_description": "Welcome to the Nota Nobile",
@@ -80,11 +76,11 @@ def about(request):
 
 def aboutus_list(request):
     about = AboutUs.objects.last()
-    # why_choose_us = Why_Choose_Us.objects.all()
+    why_choose_us = Why_Choose_Us.objects.all()
     chef = Chef.objects.all()
     context = {
         'about': about,
-        # 'why_choose_us': why_choose_us,
+        'why_choose_us': why_choose_us,
         'chef': chef
     }
     return render(request, 'about.html', context)
@@ -152,13 +148,12 @@ def send_email(request):
             message = form.cleaned_data['message']
 
             try:
-                send_mail(subject, message, from_email, ['admin@example.com'])
+                send_mail(subject, message, from_email, ['group3@gmail.com'])
 
             except BadHeaderError:
                 return HttpResponse('invalid header')
 
-            return redirect('contact:send_success')
-
+            return redirect('send_success')
 
     else:
         form = ContactForm()

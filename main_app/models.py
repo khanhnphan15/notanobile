@@ -8,15 +8,14 @@ from django.contrib.auth.models import User
 class AboutUs(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField()
-
-    # image = models.ImageField(upload_to='about_us/')
+    # image = models.ImageField(upload_to='about_us/', default='admin/main_app/to/default/image.jpg')
 
     class Meta:
-        verbose_name = 'about us '
-        verbose_name_plural = 'about us '
+        verbose_name = 'about us'
+        verbose_name_plural = 'about us'
 
     def __str__(self):
-        return self.title
+        return self.title  # Return the title as the string representation
 
 
 class Why_Choose_Us(models.Model):
