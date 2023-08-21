@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>My Reservation lol</h1>
+
+{% for reservation in reservation_list %}
+  <a href="{% url 'reservations_detail' reservation.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ reservation.name }}</span>
+            <p>Email: {{ reservation.email }}</p>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}

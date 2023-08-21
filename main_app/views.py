@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from .models import Meal, Photo, Reservation, AboutUs,Why_Choose_Us, Chef
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -192,3 +193,24 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
+
+
+
+class ReservationsList(ListView):
+    model = Reservation
+
+class ReservationsDetail(DetailView):
+    model = Reservation
+
+class ReservationsCreate(CreateView):
+    model = Reservation
+    fields = '__all__'
+
+class ReservationsUpdate(UpdateView):
+    model = Reservation
+    # add here what fields to update
+    fields = ['Date', 'time']
+
+class ReservationsDelete(DeleteView):
+    model = Reservation
+    success_url = '/reservations'
