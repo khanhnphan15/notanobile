@@ -120,5 +120,5 @@ class Wine(models.Model):
     def __str__(self):
         return self.name
     
-    # def get_absolute_url(self):
-    #     return reverse('wine_detail', kwargs={'pk': self.id})
+    def get_absolute_url(self):
+        return reverse('wine_detail', kwargs={'pk': self.id})
