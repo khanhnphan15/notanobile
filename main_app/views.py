@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Meal, Photo, Reservation, AboutUs, Why_Choose_Us, Chef
+from .models import Meal, Photo, Reservation, AboutUs, Why_Choose_Us, Chef, Category
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -13,7 +13,10 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 from .form_contact import ContactForm
+from datetime import date
 
+
+from django.shortcuts import get_object_or_404
 import uuid  # this is to make random numbers
 import boto3  # this is to make calls to aws
 import os  # os.environ['BUCKET_NAME'] is to read environment variables
@@ -55,13 +58,13 @@ def add_photo(request, meal_id):
 def home(request):
     meals = Meal.objects.all()
     meal_list = Meal.objects.all()
-    # categories = Category.objects.all()
+    categories = Category.objects.all()
     why_choose_us = Why_Choose_Us.objects.all()
 
     context = {
         'meals': meals,
         'meal_list': meal_list,
-        # 'categories': categories,
+        'categories': categories,
         'why_choose_us': why_choose_us,
     }
 
@@ -190,21 +193,24 @@ def signup(request):
     return render(request, 'registration/signup.html', context)
 
 
-
 class ReservationsList(ListView):
     model = Reservation
 
+
 class ReservationsDetail(DetailView):
     model = Reservation
+
 
 class ReservationsCreate(CreateView):
     model = Reservation
     fields = '__all__'
 
+
 class ReservationsUpdate(UpdateView):
     model = Reservation
     # add here what fields to update
     fields = ['Date', 'time']
+
 
 class ReservationsDelete(DeleteView):
     model = Reservation
