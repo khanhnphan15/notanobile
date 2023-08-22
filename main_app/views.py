@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Meal, Photo, Reservation, AboutUs, Why_Choose_Us, Chef, Category
+from .models import Meal, Photo, Reservation, AboutUs, Why_Choose_Us, Chef, Category, Wine
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -215,3 +215,22 @@ class ReservationsUpdate(UpdateView):
 class ReservationsDelete(DeleteView):
     model = Reservation
     success_url = '/reservations'
+
+
+class WineList(ListView):
+    wine = Wine
+
+class WineDetail(DetailView):
+    model = Wine
+
+class WineCreate(CreateView):
+    model = Wine
+    fields = '__all__'
+
+class WineUpdate(UpdateView):
+    model = Wine
+    fields = ['name', 'price']
+
+class WineDelete(DeleteView):
+    model = Wine
+    success_url = '/wine'
