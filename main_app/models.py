@@ -1,13 +1,15 @@
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
-from datetime import date
 from django.contrib.auth.models import User
+from datetime import date
+from django.forms import DateInput
 
 
 class AboutUs(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField()
+
     # image = models.ImageField(upload_to='about_us/', default='admin/main_app/to/default/image.jpg')
 
     class Meta:
@@ -47,6 +49,7 @@ class Chef(models.Model):
 class Meal(models.Model):
     name = models.CharField(max_length=50, verbose_name='meal')
     description = models.TextField(max_length=500)
+    category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
     people = models.IntegerField()
     price = models.DecimalField(max_digits=5, decimal_places=2)
     preparation_time = models.IntegerField()
@@ -72,6 +75,17 @@ class Meal(models.Model):
         return reverse('detail', kwargs={'meal_id': self.id})
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=30)
+
+    class Meta:
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
+
+    def __str__(self):
+        return self.name
+
+
 class Photo(models.Model):
     url = models.CharField(max_length=200)
     # A meal has many photos, a photo belongs to a meal
@@ -84,14 +98,13 @@ class Photo(models.Model):
 class Reservation(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField()
-    phone = models.IntegerField()
+    phone = models.CharField()
     number_of_persons = models.IntegerField()
     Date = models.DateField()
     time = models.TimeField()
 
     def __str__(self):
         return self.name
-    
+
     def get_absolute_url(self):
-        return reverse('reservations_detail', kwargs={'pk':self.id})
-    
+        return reverse('reservations_detail', kwargs={'pk': self.id})
