@@ -1,4 +1,6 @@
 # main_app/views.py
+from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -218,7 +220,9 @@ class ReservationsDelete(DeleteView):
 
 
 class WineList(ListView):
-    wine = Wine
+    # wine = Wine
+    def get_queryset(self):
+        return Wine.objects.all()
 
 class WineDetail(DetailView):
     model = Wine

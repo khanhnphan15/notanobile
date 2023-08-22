@@ -118,7 +118,7 @@ class Wine(models.Model):
     price = models.IntegerField()
 
     def __str__(self):
-        return f'{self.name} ({self.id})'
+        return self.name
     
     # def get_absolute_url(self):
     #     return reverse('wine_detail', kwargs={'pk': self.id})
