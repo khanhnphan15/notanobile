@@ -10,6 +10,9 @@ urlpatterns = [
   path('meals/create/', views.MealCreate.as_view(), name='meals_create'),
   path('meals/<int:pk>/update/', views.MealUpdate.as_view(), name='meals_update'),
   path('meals/<int:pk>/delete/', views.MealDelete.as_view(), name='meals_delete'),
+  path('meals/<int:meal_id>/pair_wine/<int:wine_id>/', views.pair_wine, name='pair_wine'),
+  path('meals/<int:meal_id>/unpair_wine/<int:wine_id>/', views.unpair_wine, name='unpair_wine'),
+
   # path('reservation/', views.reserve_table, name='reserve_table'),
   path('reservations/', views.ReservationsList.as_view(), name='reservations_index'),
   path('reservations/<int:pk>', views.ReservationsDetail.as_view(), name='reservations_detail'),

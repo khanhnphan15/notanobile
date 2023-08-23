@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <h1>Meal Details</h1>
+    <h1>{{meal.name}}'s Details</h1>
 
     <div class="row">
 
@@ -30,7 +30,14 @@
                     </p>
 
                 </div>
+                
             </div>
+            <form action="{% url 'add_photo' meal.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+                {% csrf_token %}
+                <input type="file" name="photo-file">
+                <br><br>
+                <button type="submit" class="btn-primary">Upload Photo</button>
+            </form>
             
 
         </div>
@@ -39,46 +46,71 @@
             <div class="card">
                 <div class="card-content">
                     <span class="card-title">Ingredients</span>
-                    <p>Ingredients Ingredients Ingredients
-                        Ingredients Ingredients Ingredients
-                        Ingredients Ingredients Ingredients
+                    <p>{{meal.ingredients}}
                     </p>
                 </div>
             </div>
 
 
+            <hr>
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title">Wine List</span>
-                    <p>Ingredients Ingredients Ingredients
-                        Ingredients Ingredients Ingredients
-                        Ingredients Ingredients Ingredients
-                    </p>
-                </div>
-            </div>
+                  <h3>{{ meal.name }}'s Paired Wine</h3>
+                  {% if meal.wines.count %}
+                    {% for wine in meal.wines.all %}
+                    <div class="card">
+                        <div class="card-content">
+                            <form action="{% url 'unpair_wine' meal.id wine.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn">Unpair</button>
+                            </form>
 
-            <form action="{% url 'add_photo' meal.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
-                {% csrf_token %}
-                <input type="file" name="photo-file">
-                <br><br>
-                <button type="submit" class="btn">Upload Photo</button>
-            </form>
+                            <ul>
+                                <li> Name: {{wine.name}}</li>
+                                <li> Type: {{wine.type}}</li>
+                                <li> Age: {{wine.age}}</li>
+                                <li>Price: ${{wine.price}}</li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+
+
+
+                    {% endfor %}
+                  {% else %}
+                    <h5>No Paired Wine 🫗</h5>
+                  {% endif %}
+                </div>
         </div>
+
     </div>
 
 
-
-
-
     <hr>
-
-
 
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">From Our Wine Cantine</h5>
           <p class="card-text">Choose the perfect wine to pair with.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          {% if wines.count %}
+           {% for wine in wines.all %}
+
+            <div class="card-action">
+                
+                <form action="{% url 'pair_wine' meal.id wine.id %}" method="POST">
+                  {% csrf_token %}
+                  <h5>{{wine.name}} 🍷</h5>  
+                   <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+              </div>
+            </div>
+
+             {% endfor %}
+            {% else %}
+                <h5>{{meal.name}} Already got paired with all the Cantine's Wines</h5>
+            {% endif %}
         </div>
       </div>
 

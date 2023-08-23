@@ -18,6 +18,21 @@ class AboutUs(models.Model):
 
     def __str__(self):
         return self.title  # Return the title as the string representation
+    
+
+
+class Wine(models.Model):
+    name = models.CharField(max_length=50)
+    type = models.CharField(max_length=100)
+    age = models.IntegerField()
+    price = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('wine_detail', kwargs={'pk': self.id})
+
 
 
 class Why_Choose_Us(models.Model):
@@ -54,8 +69,10 @@ class Meal(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2)
     preparation_time = models.IntegerField()
     image = models.ImageField(upload_to='meals/')
+    ingredients = models.TextField(max_length=500)
     slug = models.SlugField(blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    wines = models.ManyToManyField(Wine)
     # Needs an 'Ingredients' field
     # //This is a common practice to store URL-friendly versions of strings in the database
 
@@ -111,14 +128,3 @@ class Reservation(models.Model):
     
 
 
-class Wine(models.Model):
-    name = models.CharField(max_length=50)
-    type = models.CharField(max_length=100)
-    age = models.IntegerField()
-    price = models.IntegerField()
-
-    def __str__(self):
-        return self.name
-    
-    def get_absolute_url(self):
-        return reverse('wine_detail', kwargs={'pk': self.id})

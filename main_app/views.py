@@ -101,7 +101,12 @@ def meals_index(request):
 @login_required
 def meals_detail(request, meal_id):
     meal = Meal.objects.get(id=meal_id)
-    return render(request, 'meals/detail.html', {'meal': meal})
+    id_list = meal.wines.all().values_list('id')
+    wines_meal_doesnt_have = Wine.objects.exclude(id__in=id_list)
+    return render(request, 'meals/detail.html', 
+                  {'meal': meal,
+                   'wines' : wines_meal_doesnt_have}
+                  )
 
 
 class MealCreate(LoginRequiredMixin, CreateView):
@@ -123,7 +128,7 @@ class MealCreate(LoginRequiredMixin, CreateView):
 class MealUpdate(LoginRequiredMixin, UpdateView):
     model = Meal
     # Let's disallow the renaming of a cat by excluding the name field!
-    fields = ['description', 'price', 'preparation_time']
+    fields = ['description', 'price', 'preparation_time', 'ingredients']
 
 
 class MealDelete(LoginRequiredMixin, DeleteView):
@@ -218,6 +223,17 @@ class ReservationsDelete(DeleteView):
     model = Reservation
     success_url = '/reservations'
 
+def pair_wine(request, meal_id, wine_id):
+    meal = Meal.objects.get(id= meal_id)
+    meal.wines.add(wine_id)
+    return redirect('detail', meal_id = meal_id)
+
+def unpair_wine(request, meal_id, wine_id):
+    meal = Meal.objects.get(id= meal_id)
+    meal.wines.remove(wine_id)
+    return redirect('detail', meal_id = meal_id)
+
+
 
 class WineList(ListView):
     # wine = Wine
@@ -238,3 +254,4 @@ class WineUpdate(UpdateView):
 class WineDelete(DeleteView):
     model = Wine
     success_url = '/wines'
+
