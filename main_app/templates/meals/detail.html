@@ -2,8 +2,15 @@
 {% block content %}
 
     <h1>{{meal.name}}'s Details</h1>
+    <form action="{% url 'add_photo' meal.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+        {% csrf_token %}
+        <input type="file" name="photo-file">
+        <br><br>
+        <button type="submit" class="btn-primary">Upload Photo</button>
+    </form>
 
     <div class="row">
+
 
         <div class="col-sm-6">
             <div class="card">
@@ -32,12 +39,7 @@
                 </div>
                 
             </div>
-            <form action="{% url 'add_photo' meal.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
-                {% csrf_token %}
-                <input type="file" name="photo-file">
-                <br><br>
-                <button type="submit" class="btn-primary">Upload Photo</button>
-            </form>
+
             
 
         </div>
@@ -75,8 +77,7 @@
 
                         </div>
                     </div>
-
-
+                    
 
                     {% endfor %}
                   {% else %}
@@ -85,28 +86,33 @@
                 </div>
         </div>
 
+
     </div>
-    {% for photo in meal.photo_set.all %}
+    <!-- {% for photo in meal.photo_set.all %}
         <img class="responsive-img card-panel" src="{{ photo.url }}">
     {% empty %}
         <div class="card-panel orange-text center-align">No Photos Uploaded</div>
-    {% endfor %}
+    {% endfor %} -->
 
 
     <hr>
 
-      <div class="card">
+      </div>
+
+      <!-- <div class="card">
         <div class="card-body">
           <h5 class="card-title">From Our Wine Cantine</h5>
           <p class="card-text">Choose the perfect wine to pair with.</p>
-          {% if wines.count %}
-           {% for wine in wines.all %}
+          <div class="card-content">
+              
+              {% if wines.count %}
+              {% for wine in wines.all %}
 
-            <div class="card-action">
-                
+
                 <form action="{% url 'pair_wine' meal.id wine.id %}" method="POST">
                   {% csrf_token %}
-                  <h5>{{wine.name}} 🍷</h5>  
+                  <h2>{{wine.name}} 🍷</h2>  
+         
                    <button type="submit" class="btn btn-primary">Add</button>
                 </form>
               </div>
@@ -116,8 +122,33 @@
             {% else %}
                 <h5>{{meal.name}} Already got paired with all the Cantine's Wines</h5>
             {% endif %}
+        </div> -->
+
+        <div class="card-body">
+
+                <h5 class="card-title">From our Cantine</h5>
+
+
+            <div class="row">
+                {% if wines.count  %}
+                {% for wine in wines.all %}
+                    <div class="col s12 m6">
+                        <form action="{% url 'pair_wine' meal.id wine.id %}" method="POST">
+                            {% csrf_token %}
+                            <h5 class="chip">{{wine.name}} 🍷</h5>
+                            <button type="submit" class="btn-floating btn-medium waves-effect waves-light dark">Add</button>
+                        </form>
+                    </div>
+
+                             
+                 {% endfor %}
+                {% else %}
+                    <h5>{{meal.name}} Already got paired with all the Cantine's Wines</h5>
+                {% endif %}
+            </div>
+
         </div>
-      </div>
+        
 
 
 {% endblock %}
