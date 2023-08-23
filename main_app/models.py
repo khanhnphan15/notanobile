@@ -53,7 +53,7 @@ class Meal(models.Model):
     people = models.IntegerField()
     price = models.DecimalField(max_digits=5, decimal_places=2)
     preparation_time = models.IntegerField()
-    image = models.ImageField(upload_to='meals/')
+    image = models.ImageField(upload_to='meal/')
     slug = models.SlugField(blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
@@ -75,6 +75,15 @@ class Meal(models.Model):
         return reverse('detail', kwargs={'meal_id': self.id})
 
 
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    # A meal has many photos, a photo belongs to a meal
+    meal = models.ForeignKey(Meal, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for meal_id: {self.meal_id} @{self.url}"
+
+
 class Category(models.Model):
     name = models.CharField(max_length=30)
 
@@ -86,22 +95,13 @@ class Category(models.Model):
         return self.name
 
 
-class Photo(models.Model):
-    url = models.CharField(max_length=200)
-    # A meal has many photos, a photo belongs to a meal
-    meal = models.ForeignKey(Meal, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"Photo for meal_id: {self.meal_id} @{self.url}"
-
-
 class Reservation(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField()
     phone = models.CharField()
     number_of_persons = models.IntegerField()
-    Date = models.DateField()
-    time = models.TimeField()
+    Date = models.DateField('Date')
+    time = models.TimeField('Time')
 
     def __str__(self):
         return self.name
