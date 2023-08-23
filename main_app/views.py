@@ -1,9 +1,11 @@
 # main_app/views.py
+from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Meal, Photo, Reservation, AboutUs, Why_Choose_Us, Chef, Category
+from .models import Meal, Photo, Reservation, AboutUs, Why_Choose_Us, Chef, Category, Wine
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -99,7 +101,12 @@ def meals_index(request):
 @login_required
 def meals_detail(request, meal_id):
     meal = Meal.objects.get(id=meal_id)
-    return render(request, 'meals/detail.html', {'meal': meal})
+    id_list = meal.wines.all().values_list('id')
+    wines_meal_doesnt_have = Wine.objects.exclude(id__in=id_list)
+    return render(request, 'meals/detail.html', 
+                  {'meal': meal,
+                   'wines' : wines_meal_doesnt_have}
+                  )
 
 
 class MealCreate(LoginRequiredMixin, CreateView):
@@ -121,7 +128,7 @@ class MealCreate(LoginRequiredMixin, CreateView):
 class MealUpdate(LoginRequiredMixin, UpdateView):
     model = Meal
     # Let's disallow the renaming of a cat by excluding the name field!
-    fields = ['description', 'price', 'preparation_time', 'image']
+    fields = ['description', 'price', 'preparation_time', 'ingredients']
 
 
 class MealDelete(LoginRequiredMixin, DeleteView):
@@ -215,3 +222,36 @@ class ReservationsUpdate(UpdateView):
 class ReservationsDelete(DeleteView):
     model = Reservation
     success_url = '/reservations'
+
+def pair_wine(request, meal_id, wine_id):
+    meal = Meal.objects.get(id= meal_id)
+    meal.wines.add(wine_id)
+    return redirect('detail', meal_id = meal_id)
+
+def unpair_wine(request, meal_id, wine_id):
+    meal = Meal.objects.get(id= meal_id)
+    meal.wines.remove(wine_id)
+    return redirect('detail', meal_id = meal_id)
+
+
+
+class WineList(ListView):
+    # wine = Wine
+    def get_queryset(self):
+        return Wine.objects.all()
+
+class WineDetail(DetailView):
+    model = Wine
+
+class WineCreate(CreateView):
+    model = Wine
+    fields = '__all__'
+
+class WineUpdate(UpdateView):
+    model = Wine
+    fields = ['name', 'price']
+
+class WineDelete(DeleteView):
+    model = Wine
+    success_url = '/wines'
+
