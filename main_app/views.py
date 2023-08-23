@@ -17,7 +17,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .form_contact import ContactForm
 from datetime import date
 
-
 from django.shortcuts import get_object_or_404
 import uuid  # this is to make random numbers
 import boto3  # this is to make calls to aws
@@ -177,7 +176,7 @@ def send_email(request):
 
 
 def send_success(request):
-    return HttpResponse('thanks you for you email ^_^')
+    return render(request, 'contact/success.html', {})
 
 
 def signup(request):

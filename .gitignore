@@ -11,7 +11,7 @@ db.sqlite3
 
 # Static files
 staticfiles/
-static/
+main_app/static/static/
 
 # Media files
 media/

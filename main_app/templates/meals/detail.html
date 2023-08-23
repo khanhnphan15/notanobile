@@ -86,6 +86,11 @@
         </div>
 
     </div>
+    {% for photo in meal.photo_set.all %}
+        <img class="responsive-img card-panel" src="{{ photo.url }}">
+    {% empty %}
+        <div class="card-panel orange-text center-align">No Photos Uploaded</div>
+    {% endfor %}
 
 
     <hr>
