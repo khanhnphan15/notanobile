@@ -123,7 +123,7 @@ class MealCreate(LoginRequiredMixin, CreateView):
 class MealUpdate(LoginRequiredMixin, UpdateView):
     model = Meal
     # Let's disallow the renaming of a cat by excluding the name field!
-    fields = ['description', 'price', 'preparation_time', 'image']
+    fields = ['description', 'price', 'preparation_time']
 
 
 class MealDelete(LoginRequiredMixin, DeleteView):
@@ -237,4 +237,4 @@ class WineUpdate(UpdateView):
 
 class WineDelete(DeleteView):
     model = Wine
-    success_url = '/wine'
+    success_url = '/wines'
