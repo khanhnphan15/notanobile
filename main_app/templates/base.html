@@ -40,28 +40,30 @@
             </ul>
             <!-- ... other parts of  base.html -->
 
-<ul class="right">
-    <li><a href="{% url 'about' %}">About Us</a></li>
-    {% if user.is_authenticated %}
-        <li><a href="{% url 'reservations_create' %}">Reserve A Table</a></li>
-        <li><a href="{% url 'reservations_index' %}"> My Reservation</a></li>
-        <li><a href="{% url 'index' %}">Our Menu</a></li>
-        <li><a href="{% url 'send_email' %}">Contact</a></li>
+            <ul class="right">
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                {% if user.is_authenticated %}
+                    {% if not user.is_staff %}
+                        <li><a href="{% url 'reservations_create' %}">Reserve A Table</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'reservations_index' %}">Reservations</a></li>
+                    <li><a href="{% url 'index' %}">Our Menu</a></li>
+                    <li><a href="{% url 'send_email' %}">Contact</a></li>
 
-        {% if user.is_staff %}  {# Check if user is an admin #}
-            <li><a href="{% url 'meals_create' %}">Add a meal</a></li>
-            <li><a href="{% url 'wine_index' %}"> Wine List 🍷</a></li>
-            <li><a href="{% url 'wine_create' %}"> Add Wine ➕</a></li>
-        {% endif %}
+                    {% if user.is_staff %}
+                        <li><a href="{% url 'meals_create' %}">Add a meal</a></li>
+                        <li><a href="{% url 'wine_index' %}"> Wine List 🍷</a></li>
+                        <li><a href="{% url 'wine_create' %}"> Add Wine ➕</a></li>
+                    {% endif %}
 
-        <li><a href="{% url 'logout' %}">Log Out</a></li>
-    {% else %}
-        <li><a href="{% url 'signup' %}">Sign Up</a></li>
-        <li><a href="{% url 'login' %}">Log In</a></li>
-    {% endif %}
-</ul>
+                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                {% else %}
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                    <li><a href="{% url 'login' %}">Log In</a></li>
+                {% endif %}
+            </ul>
 
-<!-- ... other parts of your base.html -->
+            <!-- ... other parts of your base.html -->
 
         </div>
     </nav>

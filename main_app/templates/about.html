@@ -5,48 +5,55 @@
 
     <div class="main-wrap">
         <div class="cover_1 cover_sm">
-            <div class="img_bg" style="background-image: url({% static 'site_static/img/slider-1.jpg' %})"
+            <div class="img_bg" style="background-image: url({% static 'static/img/slider-1.jpg' %})"
                  data-stellar-background-ratio="0.5">
                 <div class="container">
                     <div class="row align-items-center justify-content-center">
                         <div class="col-md-7" data-aos="fade-up">
-                            <h2 class="heading">About The Restaurant</h2>
-                            <p class="lead">Step into Nota Nobile, a harmonious blend of culinary artistry and musical elegance. Here, every bite is akin to a melodious note, creating a symphonic experience that captures both tradition and innovation. Our passion-filled quest: to craft the ultimate Italian dish that resonates like a timeless aria, intertwining the essence of tradition with the thrill of modern magic.</p>
+                            <h2 class="heading"style="padding: 250px;">About The Restaurant</h2>
+{#                            <p class="lead">Step into Nota Nobile, a harmonious blend of culinary artistry and musical#}
+{#                                elegance. Here, every bite is akin to a melodious note, creating a symphonic experience#}
+{#                                that captures both tradition and innovation. Our passion-filled quest: to craft the#}
+{#                                ultimate Italian dish that resonates like a timeless aria, intertwining the essence of#}
+{#                                tradition with the thrill of modern magic.</p>#}
                         </div>
                     </div>
                 </div>
             </div>
         </div> <!-- .cover_1 -->
 
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-7" data-aos="fade-up">
-                        <img src="{% static 'site_static/img/about_1.png' %}" alt="Image placeholder" class="img-fluid">
-                    </div>
-                    <div class="col-md-5 pl-md-5" data-aos="fade-up" data-aos-delay="200">
-                        <h2 class="mb-4">{{ about.title }}</h2>
-                        <p>{{ about.content }}</p>
-
-                    </div>
+        <div class="col-md-12" style="margin-top: 50px;">
+            <div class="row">
+                <div class="col-md-6">
+                    <img style="width: 80%; margin: auto; display: block;" src="{{ about.image.url }}"
+                         alt="{{ about.title }}" class="about-image">
                 </div>
+                <div class="col-md-6">
+    <h2 style="font-family: 'Open Sans'; display: block; margin: auto; text-align: center;">{{ about.title }}</h2>
+    <p style="display: block; margin-right: 48px; padding: 8px;">{{ about.content }}</p>
+</div>
             </div>
-        </div> <!-- .section -->
+        </div>
 
         <div class="section">
             <div class="container">
                 <div class="row justify-content-center mb-5" data-aos="fade-up">
                     <div class="col-md-8  text-center">
-                        <h2 class="mb-3">Why Choose Us</h2>
-                        <p class="lead">With a heart full of devotion and pockets filled with cheeky kitchen secrets, we’re on an electrifying chase for Italian culinary stardom. And trust us, it’s not just about the food;
-                            it’s about the chuckles, the shared moments, and the joyous memories we create along the way.</p>
+                        <h2 class="mb-3" style="font-family:'Open Sans'">Why Choose Us</h2>
+                        <p class="lead">With a heart full of devotion and pockets filled with cheeky kitchen secrets,
+                            we’re on an electrifying chase for Italian culinary stardom. And trust us, it’s not just
+                            about the food;
+                            it’s about the chuckles, the shared moments, and the joyous memories we create along the
+                            way.</p>
                     </div>
                 </div>
                 <div class="row large-gutters">
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-                        <img src="{% static 'site_static/img/img_2.jpg' %}" alt="Image placeholder"
+                    <div class="col-md-6">
+                        <img style="width: 80%; margin: auto; display: block;" src="{{ one.image.url }}"
                              class="img-fluid rounded">
+                        <img src="{{ one.image.url }}" alt="Image placeholder" class="img-fluid rounded">
                     </div>
+
                     <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="accordion" id="accordion">
                             {% for info in why_choose_us %}
@@ -77,17 +84,16 @@
             <div class="container">
                 <div class="row justify-content-center mb-5" data-aos="fade-up">
                     <div class="col-md-8  text-center">
-                        <h2 class="mb-3">Meet the Culinary Dream Team</h2>
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum fuga, alias
-                            distinctio voluptatum magni voluptatibus.</p>
+                        <h2 class="mb-3" style="font-family:'Open Sans'">Meet the Culinary Dream Team</h2>
+                        <p class="lead">Discover the Maestros Behind Our Culinary Delights</p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" style="margin-left: 250px;">
                     {% for one in chef %}
 
-                        <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                        <div class="col-md-3" data-aos="fade-up" data-aos-delay="100" style="text-align: center;">
                             <img src="{{ one.image.url }}" alt="Image placeholder" class="img-fluid mb-4 rounded">
-                            <h3 class="mb-3">{{ one.name }}</h3>
+                            <h3 class="mb-3" style="font-family:'Open Sans'">{{ one.name }}</h3>
                             <p class="post-meta text-muted">{{ one.title }}</p>
                             <p class="mb-5">{{ one.bio }}</p>
                         </div>
@@ -98,8 +104,9 @@
         </div> <!-- .section -->
 
     </div> <!-- .main-wrap -->
-    <footer>All Rights Reserved, &copy; 2023</footer>
+
 {% endblock content %}
+<footer>All Rights Reserved, &copy; 2023</footer>
 
 
 

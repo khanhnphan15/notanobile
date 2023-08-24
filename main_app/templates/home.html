@@ -9,7 +9,8 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-md-12" data-aos="fade-up">
-                            <h2 class="heading" style="padding: 150px;">"Experience the timeless elegance of Italy, one bite at a time."</h2>
+                            <h2 class="heading" style="padding: 150px;">"Experience the timeless elegance of Italy, one
+                                bite at a time."</h2>
                         </div>
                     </div>
                 </div>
@@ -60,7 +61,8 @@
                             </div>
                             <div class="media-body">
                                 <h3>Easy Reservation</h3>
-                                <p>Discover the next era of dining: every reservation is a journey of flavors and memories.</p>
+                                <p>Discover the next era of dining: every reservation is a journey of flavors and
+                                    memories.</p>
                             </div>
                         </div>
                     </div>
@@ -73,7 +75,8 @@
                 <div class="row justify-content-center">
                     <div class="col-md-7 text-center" data-aos="fade-up">
                         <h2 class="mb-4">Our Specialties</h2>
-                        <p class="lead">Dive into the heart of Italy with our special dish, a masterpiece curated from the annals of Italian culinary traditions, enhanced for the modern connoisseur</p>
+                        <p class="lead">Dive into the heart of Italy with our special dish, a masterpiece curated from
+                            the annals of Italian culinary traditions, enhanced for the modern connoisseur</p>
                     </div>
                 </div>
             </div>
@@ -109,7 +112,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8" data-aos="fade-up">
 
-                        <h2 class="mb-5 text-center">Menu List with Price</h2>
+                        <h2 class="mb-5 text-center"style="font-family:'Open Sans'">Menu List with Price</h2>
 
                         <ul class="nav site-tab-nav" id="pills-tab" role="tablist">
                             {% for category in categories %}
@@ -152,47 +155,5 @@
                 </div>
             </div>
         </div>
-
-        <div class="section">
-            <div class="container">
-                <div class="row justify-content-center mb-5" data-aos="fade-up">
-                    <div class="col-md-8  text-center">
-                        <h2 class="mb-3">Why Choose Us</h2>
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum fuga, alias
-                            distinctio voluptatum magni voluptatibus.</p>
-                    </div>
-                </div>
-                <div class="row large-gutters">
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-                        <img src="{% static 'site_static/img/img_2.jpg' %}" alt="Image placeholder"
-                             class="img-fluid rounded">
-                    </div>
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="accordion" id="accordion">
-                            {% for info in why_choose_us %}
-
-                                <div class="accordion-item">
-                                    <h3 class="mb-0">
-                                        <a class="btn-block p-3" data-toggle="collapse" href="#collapse{{ info.id }}"
-                                           role="button" aria-expanded="true"
-                                           aria-controls="collapseOne">{{ info.title }} <span class="icon"></span></a>
-                                    </h3>
-                                    <div id="collapse{{ info.id }}" class="collapse " aria-labelledby="headingOne"
-                                         data-parent="#accordion">
-                                        <div class="p-3">
-                                            <p>{{ info.content }}</p>
-                                        </div>
-                                    </div>
-                                </div> <!-- .accordion-item -->
-
-                            {% endfor %}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- .section -->
-
-
     </div> <!-- .main-wrap -->
 {% endblock content %}

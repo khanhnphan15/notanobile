@@ -15,6 +15,7 @@ body {
     width: 100%;
     padding: 0;
     margin: 0;
+    font-family: "Open Sans";
 }
 
 .main-wrap {
@@ -36,9 +37,10 @@ body {
     right: 0;
     bottom: 0;
     left: 0; /* these four properties make the pseudo-element cover the entire container */
-
     background-color: black; /* gives the pseudo-element a black color */
     opacity: 0.6; /* makes it semi-transparent, adjust value as desired, 0 is fully transparent, 1 is fully opaque */
+    margin-top: 64px;
+    height: 679px;
 }
 
 
@@ -1046,6 +1048,7 @@ textarea.form-control {
 
 .cover_1 {
     position: relative;
+    height: 679px;
 }
 
 .cover_1 .lead {
@@ -1521,4 +1524,5 @@ textarea.form-control {
 
 .meal_img {
     width: 100% !important;
+
 }

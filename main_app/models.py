@@ -9,8 +9,7 @@ from django.forms import DateInput
 class AboutUs(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField()
-
-    # image = models.ImageField(upload_to='about_us/', default='admin/main_app/to/default/image.jpg')
+    image = models.ImageField(upload_to='about_us/', default='admin/main_app/to/default/image.jpg')
 
     class Meta:
         verbose_name = 'about us'
@@ -118,10 +117,10 @@ class Reservation(models.Model):
     number_of_persons = models.IntegerField()
     Date = models.DateField('Date')
     time = models.TimeField('Time')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
         return reverse('reservations_detail', kwargs={'pk': self.id})
-

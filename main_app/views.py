@@ -102,9 +102,9 @@ def meals_detail(request, meal_id):
     meal = Meal.objects.get(id=meal_id)
     id_list = meal.wines.all().values_list('id')
     wines_meal_doesnt_have = Wine.objects.exclude(id__in=id_list)
-    return render(request, 'meals/detail.html', 
+    return render(request, 'meals/detail.html',
                   {'meal': meal,
-                   'wines' : wines_meal_doesnt_have}
+                   'wines': wines_meal_doesnt_have}
                   )
 
 
@@ -202,6 +202,14 @@ def signup(request):
 class ReservationsList(ListView):
     model = Reservation
 
+    def get_queryset(self):
+        # Get the original queryset
+        queryset = super().get_queryset()
+        if self.request.user.is_staff:
+            return queryset
+        else:
+            return queryset.filter(user=self.request.user)
+
 
 class ReservationsDetail(DetailView):
     model = Reservation
@@ -209,7 +217,13 @@ class ReservationsDetail(DetailView):
 
 class ReservationsCreate(CreateView):
     model = Reservation
-    fields = '__all__'
+    form_class = ReserveTableForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.email = self.request.user.email
+        form.instance.name = f'{self.request.user.first_name} {self.request.user.last_name}'
+        return super().form_valid(form)
 
 
 class ReservationsUpdate(UpdateView):
@@ -222,16 +236,17 @@ class ReservationsDelete(DeleteView):
     model = Reservation
     success_url = '/reservations'
 
+
 def pair_wine(request, meal_id, wine_id):
-    meal = Meal.objects.get(id= meal_id)
+    meal = Meal.objects.get(id=meal_id)
     meal.wines.add(wine_id)
-    return redirect('detail', meal_id = meal_id)
+    return redirect('detail', meal_id=meal_id)
+
 
 def unpair_wine(request, meal_id, wine_id):
-    meal = Meal.objects.get(id= meal_id)
+    meal = Meal.objects.get(id=meal_id)
     meal.wines.remove(wine_id)
-    return redirect('detail', meal_id = meal_id)
-
+    return redirect('detail', meal_id=meal_id)
 
 
 class WineList(ListView):
@@ -239,18 +254,21 @@ class WineList(ListView):
     def get_queryset(self):
         return Wine.objects.all()
 
+
 class WineDetail(DetailView):
     model = Wine
+
 
 class WineCreate(CreateView):
     model = Wine
     fields = '__all__'
 
+
 class WineUpdate(UpdateView):
     model = Wine
     fields = ['name', 'price']
 
+
 class WineDelete(DeleteView):
     model = Wine
     success_url = '/wines'
-

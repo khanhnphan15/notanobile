@@ -3,19 +3,19 @@
 {% load static %}
 {% block content %}
 
-
-
-      <div class="main-wrap">
+    <div class="main-wrap">
         <div class="cover_1">
-          <div class="img_bg" style="background-image: url({% static 'site_static/img/slider-1.jpg' %})" data-stellar-background-ratio="0.5">
-            <div class="container">
-              <div class="row align-items-center">
-                <div class="col-md-12" data-aos="fade-up">
-                  <h2 class="heading">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit ipsa sint amet aliquam velit minima tenetur quisquam beatae molestiae possimus dicta.</h2>
+            <div class="img_bg" style="background-image: url({% static 'site_static/img/slider-1.jpg' %})"
+                 data-stellar-background-ratio="0.5">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-12" data-aos="fade-up">
+                            <h2 class="heading">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit ipsa sint
+                                amet aliquam velit minima tenetur quisquam beatae molestiae possimus dicta.</h2>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div> <!-- .cover_1 -->
 
         {% comment %}
@@ -95,56 +95,50 @@
         {% endcomment %}
 
         <div class="section">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-md-8" data-aos="fade-up">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8" data-aos="fade-up">
 
-                <h2 class="mb-5 text-center">Menu List with Price</h2>
+                        <h2 class="mb-5 text-center">Menu List with Price</h2>
 
-                <ul class="nav site-tab-nav" id="pills-tab" role="tablist">
-                  {% for category in categories %}
-                    <li class="nav-item">
-                      <a class="nav-link " id="{{category}}-tab" data-toggle="pill" href="#{{category}}" role="tab" aria-controls="{{category}}" aria-selected="true">{{category}}</a>
-                    </li>
-                  {% endfor %}
+                        <ul class="nav site-tab-nav" id="pills-tab" role="tablist">
+                            {% for category in categories %}
+                                <li class="nav-item">
+                                    <a class="nav-link " id="{{ category }}-tab" data-toggle="pill"
+                                       href="#{{ category }}" role="tab" aria-controls="{{ category }}"
+                                       aria-selected="true">{{ category }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
 
-                </ul>
+                            {% for category in categories %}
 
+                                <div class="tab-pane fade show" id="{{ category }}" role="tabpanel"
+                                     aria-labelledby="{{ category }}-tab">
 
-                <div class="tab-content" id="pills-tabContent">
-
-                  {% for category in categories %}
-
-                    <div class="tab-pane fade show" id="{{category}}" role="tabpanel" aria-labelledby="{{category}}-tab">
-
-                      {% for meal in meal_list %}
-                          {% if meal.category == category%}
-                            <div class="d-block d-md-flex menu-food-item">
-                              <div class="text order-1 mb-3">
-                                <h3><a href="{% url 'meals:meal_detail' meal.slug %}">{{meal.name}}</a></h3>
-                                <p>{{meal.description}}</p>
-                              </div>
-                              <div class="price order-2">
-                                <strong>${{meal.price}}</strong>
-                              </div>
-                            </div> <!-- .menu-food-item -->
-                          {% endif %}
-                      {% endfor %}
-
+                                    {% for meal in meal_list %}
+                                        {% if meal.category == category %}
+                                            <div class="d-block d-md-flex menu-food-item">
+                                                <div class="text order-1 mb-3">
+                                                    <h3>
+                                                        <a href="{% url 'meals:meal_detail' meal.slug %}">{{ meal.name }}</a>
+                                                    </h3>
+                                                    <p>{{ meal.description }}</p>
+                                                </div>
+                                                <div class="price order-2">
+                                                    <strong>${{ meal.price }}</strong>
+                                                </div>
+                                            </div> <!-- .menu-food-item -->
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                        </div>
                     </div>
-
-                  {% endfor %}
                 </div>
-
-
-              </div>
             </div>
-          </div>
         </div>
+    </div> <!-- .main-wrap -->
 
-
-
-
-      </div> <!-- .main-wrap -->
-
- {% endblock content %}
+{% endblock content %}
