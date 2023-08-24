@@ -9,26 +9,27 @@
         <button type="submit" class="btn-primary">Upload Photo</button>
     </form>
 
+
     <div class="row">
 
 
         <div class="col-sm-6">
             <div class="card">
-                
+
                 <a href="{% url 'detail' meal.id %}"></a>
-        
+
                 <div class="card-action">
                     <a href="{% url 'meals_update' meal.id %}" class="chip">Edit</a>
                     <a href="{% url 'meals_delete' meal.id %}" class="chip">Delete</a>
                 </div>
-        
+
                 <div class="card-content">
-                    
-                                        {% for photo in meal.photo_set.all %}
-                                            <img class="responsive-img card-panel" src="{{ photo.url }}">
-                                        {% empty %}
-                                            <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-                                        {% endfor %}
+
+                    {% for photo in meal.photo_set.all %}
+                        <img class="responsive-img card-panel" src="{{ photo.url }}">
+                    {% empty %}
+                        <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+                    {% endfor %}
                     <span class="card-title">{{ meal.name }}</span>
                     <p>Description: {{ meal.description }}</p>
                     <p>Price: {{ meal.price|linebreaks }}</p>
@@ -37,54 +38,60 @@
                     </p>
 
                 </div>
-                
+
             </div>
 
-            
-
+            <form action="{% url 'add_photo' meal.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+                {% csrf_token %}
+                <input type="file" name="photo-file">
+                <br><br>
+                <button type="submit" class="btn-primary">Upload Photo</button>
+            </form>
         </div>
 
         <div class="col-sm-6">
             <div class="card" id="ingredients">
                 <div class="card-content">
                     <span class="card-title">Ingredients</span>
-                    <p>{{meal.ingredients}}
+                    <p>{{ meal.ingredients }}
                     </p>
                 </div>
             </div>
-
-
             <hr>
             <div class="card">
                 <div class="card-content">
-                  <h3>{{ meal.name }}'s Paired Wine</h3>
-                  {% if meal.wines.count %}
-                    {% for wine in meal.wines.all %}
-                    <div class="card">
-                        <div class="card-content">
-                            <form action="{% url 'unpair_wine' meal.id wine.id %}" method="POST">
-                                {% csrf_token %}
-                                <button type="submit" class="btn">Unpair</button>
-                            </form>
+                    <h3>{{ meal.name }}'s Paired Wine</h3>
+                    {% if meal.wines.count %}
+                        {% for wine in meal.wines.all %}
+                            <div class="card">
+                                <div class="card-content">
+                                    <form action="{% url 'unpair_wine' meal.id wine.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn">Unpair</button>
+                                    </form>
 
-                            <ul>
-                                <li> Name: {{wine.name}}</li>
-                                <li> Type: {{wine.type}}</li>
-                                <li> Age: {{wine.age}}</li>
-                                <li>Price: ${{wine.price}}</li>
+                                    <ul>
+                                        <li> Name: {{ wine.name }}</li>
+                                        <li> Type: {{ wine.type }}</li>
+                                        <li> Age: {{ wine.age }}</li>
+                                        <li>Price: ${{ wine.price }}</li>
 
-                            </ul>
-
-                        </div>
-                    </div>
-                    
-
-                    {% endfor %}
-                  {% else %}
-                    <h5>No Paired Wine 🫗</h5>
-                  {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <h5>No Paired Wine 🫗</h5>
+                    {% endif %}
                 </div>
+            </div>
+
         </div>
+        {#    {% for photo in meal.photo_set.all %}#}
+        {#        <img class="responsive-img card-panel" src="{{ photo.url }}">#}
+        {#    {% empty %}#}
+        {#        <div class="card-panel orange-text center-align">No Photos Uploaded</div>#}
+        {#    {% endfor %}#}
 
 
     </div>
@@ -112,12 +119,8 @@
                             <!-- <button type="submit" class="waves-effect waves-light btn-small"><i class="material-icons left">cloud</i>+</button> -->
                             <!-- <a class="waves-effect waves-light btn-small">button</a> -->
                             <button type="submit" class="btn-floating btn-medium waves-effect waves-light dark">Add</button>
-
-
                         </form>
-                    </div>
-
-                             
+                    </div>            
                  {% endfor %}
                 {% else %}
                     <h5>{{meal.name}} Already got paired with all the Cantine's Wines</h5>
