@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <h1>{{ meal.name }}'s Details</h1>
+    <h1>{{meal.name}}'s Details</h1>
+    <form action="{% url 'add_photo' meal.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+        {% csrf_token %}
+        <input type="file" name="photo-file">
+        <br><br>
+        <button type="submit" class="btn-primary">Upload Photo</button>
+    </form>
+
 
     <div class="row">
+
 
         <div class="col-sm-6">
             <div class="card">
@@ -11,8 +19,8 @@
                 <a href="{% url 'detail' meal.id %}"></a>
 
                 <div class="card-action">
-                    <a href="{% url 'meals_update' meal.id %}">Edit</a>
-                    <a href="{% url 'meals_delete' meal.id %}">Delete</a>
+                    <a href="{% url 'meals_update' meal.id %}" class="chip">Edit</a>
+                    <a href="{% url 'meals_delete' meal.id %}" class="chip">Delete</a>
                 </div>
 
                 <div class="card-content">
@@ -32,17 +40,17 @@
                 </div>
 
             </div>
+
             <form action="{% url 'add_photo' meal.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
                 {% csrf_token %}
                 <input type="file" name="photo-file">
                 <br><br>
                 <button type="submit" class="btn-primary">Upload Photo</button>
             </form>
-
         </div>
 
         <div class="col-sm-6">
-            <div class="card">
+            <div class="card" id="ingredients">
                 <div class="card-content">
                     <span class="card-title">Ingredients</span>
                     <p>{{ meal.ingredients }}
@@ -69,12 +77,8 @@
                                         <li>Price: ${{ wine.price }}</li>
 
                                     </ul>
-
                                 </div>
                             </div>
-
-
-
                         {% endfor %}
                     {% else %}
                         <h5>No Paired Wine 🫗</h5>
@@ -90,31 +94,41 @@
         {#    {% endfor %}#}
 
 
-        <hr>
-
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">From Our Wine Cantine</h5>
-                <p class="card-text">Choose the perfect wine to pair with.</p>
-                {% if wines.count %}
-                    {% for wine in wines.all %}
-
-                        <div class="card-action">
-
-                            <form action="{% url 'pair_wine' meal.id wine.id %}" method="POST">
-                                {% csrf_token %}
-                                <h5>{{ wine.name }} 🍷</h5>
-                                <button type="submit" class="btn btn-primary">Add</button>
-                            </form>
-                        </div>
-                        </div>
-
-                    {% endfor %}
-                {% else %}
-                    <h5>{{ meal.name }} Already got paired with all the Cantine's Wines</h5>
-                {% endif %}
-        </div>
     </div>
+
+
+    <hr>
+
+      </div>
+
+
+
+        <div class="card-body">
+
+                <h2 class="card-title">From our Cantine</h2>
+                <!-- <span class="new badge">4</span> -->
+
+
+            <div class="row" id="test">
+                {% if wines.count  %}
+                {% for wine in wines.all %}
+                    <div class="col s12 m6">
+                        <form action="{% url 'pair_wine' meal.id wine.id %}" method="POST">
+                            {% csrf_token %}
+                            <h2 >{{wine.name}} 🍷</h2>
+                            <!-- <button type="submit" class="waves-effect waves-light btn-small"><i class="material-icons left">cloud</i>+</button> -->
+                            <!-- <a class="waves-effect waves-light btn-small">button</a> -->
+                            <button type="submit" class="btn-floating btn-medium waves-effect waves-light dark">Add</button>
+                        </form>
+                    </div>            
+                 {% endfor %}
+                {% else %}
+                    <h5>{{meal.name}} Already got paired with all the Cantine's Wines</h5>
+                {% endif %}
+            </div>
+
+        </div>
+        
 
 
 {% endblock %}
