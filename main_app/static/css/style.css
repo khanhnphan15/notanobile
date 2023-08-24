@@ -1524,5 +1524,30 @@ textarea.form-control {
 
 .meal_img {
     width: 100% !important;
+<<<<<<< HEAD
 
 }
+=======
+}
+
+
+#test{
+    border: solid gray;
+}
+
+#test {
+    border: solid antiquewhite;
+    border-radius: 34px;
+    /*! width: 215px; *//*! height: 100px; *//*! margin-left: 8px; */padding: 7px;
+    background: antiquewhite;
+  }
+  
+  
+#ingredients{
+    background: #FFFDE4;
+}
+
+
+
+  
+>>>>>>> 4d2060c442884975b017c1bf416aeeaa40271de2
