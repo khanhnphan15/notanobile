@@ -4,50 +4,50 @@
 
 {% block content %}
 
-    <style>
-        .cover_1 h2 {
-            padding-top: 250px;
-        }
-    </style>
+<style>
+    .cover_1 h2 {
+        padding-top: 250px;
+    }
+</style>
 
-    <div class="main-wrap">
-        <!-- .cover_1 Header for the Meal List -->
-        <div class="cover_1 cover_sm">
-                <div class="container">
-                    <div class="row align-items-center justify-content-center">
-                        <div class="col-md-7" data-aos="fade-up">
-                            <h2 class="heading">Meal List</h2>
-                        </div>
-                    </div>
+<div class="main-wrap">
+    <!-- .cover_1 Header for the Meal List -->
+    <div class="cover_1 cover_sm">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-7" data-aos="fade-up">
+                    <h2 class="heading">Meal List</h2>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="section" data-aos="fade-up">
-            <div class="container">
-                <div class="row justify-content-center mb-5">
+    <div class="section" data-aos="fade-up">
+        <div class="container">
+            <div class="row">
 
-                    {% for meal in meals %}
-                        <div class="col-md-10 p-5 form-wrap">
-                            <a href="{% url 'detail' meal.id %}">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ meal.name }}</h5>
-                                        <p class="card-text">Description: {{ meal.description }}</p>
-                                        <p class="card-text">People: {{ meal.people }}</p>
-                                        <p class="card-text">Price: {{ meal.price }}</p>
-                                        <p class="card-text">Preparation time: {{ meal.preparation_time }}</p>
-                                        <p class="card-text">Image: <img class="responsive-img" src="{{ meal.image }}"
-                                                                         alt="{{ meal.name }}"></p>
-                                    </div>
-                                </div>
-                            </a>
+                {% for meal in meals %}
+                    <div class="col-md-4 p-3"> <!-- Adjusted grid for 3 cards per row -->
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="{{ meal.image.url }}" alt="{{ meal.name }}" class="responsive-img">
+                                <span class="card-title">{{ meal.name }}</span>
+                            </div>
+                            <div class="card-content">
+                                <p><strong>Description:</strong> {{ meal.description }}</p>
+                                <p><strong>People:</strong> {{ meal.people }}</p>
+                                <p><strong>Price:</strong> {{ meal.price }}</p>
+                                <p><strong>Preparation time:</strong> {{ meal.preparation_time }}</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="{% url 'detail' meal.id %}">More Details</a>
+                            </div>
                         </div>
-                    {% endfor %}
+                    </div>
+                {% endfor %}
 
-                </div>
             </div>
-        </div> <!-- .section -->
-
-    </div> <!-- .main-wrap -->
+        </div>
+    </div> <!-- .section -->
+</div> <!-- .main-wrap -->
 {% endblock content %}
