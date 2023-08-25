@@ -1058,6 +1058,7 @@ textarea.form-control {
 
 .cover_1 h2 {
     padding: 280px 150px 0;
+    text-align: center;
 }
 
 .cover_1 .lead {
@@ -1603,3 +1604,95 @@ textarea.form-control {
     flex: 1 1 auto;
     padding: 2.25rem;
 }
+
+
+/*Mattia's style for meal list*/
+
+/*#test{*/
+/*    border: solid gray;*/
+/*    height: 113px;*/
+/*}*/
+
+/*#test{*/
+/*    border: solid antiquewhite;*/
+/*    border-radius: 32px;*/
+/*    !* height: 40px; *!*/
+
+/*    !*! width: 215px; *!!*! height: 100px; *!!*! margin-left: 8px; *!padding: 7px;*/
+/*    background: antiquewhite;*/
+/*  }*/
+
+
+/*#ingredients{*/
+/*    background: #FFFDE4;*/
+/*}*/
+
+/*#pair-wine{*/
+/*    background: #dad5d2;*/
+/*}*/
+
+/*.container {*/
+/*    background: #dfdbd8;*/
+/*  }*/
+
+/*#meal_detail{*/
+/*    background: #e8e8e8;*/
+/*}*/
+
+/*#wine-paired{*/
+/*    background: antiquewhite;*/
+/*    !* background: #dfdbd8; *!*/
+/*}*/
+
+/*#unpair_btn{*/
+/*    margin-left: 486px;*/
+/*    border-radius: 32px;*/
+/*    width: 136px;*/
+/*    border-style: solid;*/
+/*    border: solid rgb(210, 139, 216);*/
+/*    border-style: inset;*/
+/*}*/
+
+/*#upload_img{*/
+/*    background: cover;*/
+/*    height: 75px;*/
+/*    width: 414px;*/
+/*    margin-left: 1065px;*/
+/*    border-radius: 26px;*/
+/*    display: flex;*/
+/*}*/
+
+/*#btn_img{*/
+/*    border-radius: 28px;*/
+/*    height: 33px;*/
+/*    background: grey;*/
+/*}*/
+
+/*#input_btn{*/
+/*    height: 39px;*/
+/*    width: 261px;*/
+
+/*}*/
+
+/*#edit_navbar{*/
+/*    background: cornsilk;*/
+/*    display: flex;*/
+/*    align-content: unsafe;*/
+/*    justify-content: flex-end;*/
+/*    height: 40px;*/
+/*    !* margin-left: 6px; *!*/
+/*}*/
+
+/*.contain-edit {*/
+/*    height: 12px;*/
+/*  }*/
+
+/*#chip-btn{*/
+/*    margin-top: -11px;*/
+/*}*/
+
+/*.card-body {*/
+/*    -ms-flex:1 1 auto;*/
+/*    flex:1 1 auto;*/
+/*    padding:2.25rem;*/
+/*  }*/
