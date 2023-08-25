@@ -1,8 +1,11 @@
 # main_app/views.py
+from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Meal, Photo, Reservation, AboutUs,Why_Choose_Us, Chef
+from django.views.generic import ListView, DetailView
+from .models import Meal, Photo, Reservation, AboutUs, Why_Choose_Us, Chef, Category, Wine
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -12,7 +15,9 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 from .form_contact import ContactForm
+from datetime import date
 
+from django.shortcuts import get_object_or_404
 import uuid  # this is to make random numbers
 import boto3  # this is to make calls to aws
 import os  # os.environ['BUCKET_NAME'] is to read environment variables
@@ -54,21 +59,17 @@ def add_photo(request, meal_id):
 def home(request):
     meals = Meal.objects.all()
     meal_list = Meal.objects.all()
-    # categories = Category.objects.all()
+    categories = Category.objects.all()
     why_choose_us = Why_Choose_Us.objects.all()
 
     context = {
         'meals': meals,
         'meal_list': meal_list,
-        # 'categories': categories,
+        'categories': categories,
         'why_choose_us': why_choose_us,
     }
 
     return render(request, 'home.html', context)
-
-
-
-
 
 
 def about(request):
@@ -80,26 +81,32 @@ def about(request):
 
 def aboutus_list(request):
     about = AboutUs.objects.last()
-    # why_choose_us = Why_Choose_Us.objects.all()
+    why_choose_us = Why_Choose_Us.objects.all()
     chef = Chef.objects.all()
     context = {
         'about': about,
-        # 'why_choose_us': why_choose_us,
-        'chef': chef
+        'why_choose_us': why_choose_us,
+        'chef': chef,
     }
     return render(request, 'about.html', context)
 
 
 @login_required
 def meals_index(request):
-    meals = Meal.objects.filter(user=request.user)
+    meals = Meal.objects.all()
+
     return render(request, 'meals/index.html', {'meals': meals})
 
 
 @login_required
 def meals_detail(request, meal_id):
     meal = Meal.objects.get(id=meal_id)
-    return render(request, 'meals/detail.html', {'meal': meal})
+    id_list = meal.wines.all().values_list('id')
+    wines_meal_doesnt_have = Wine.objects.exclude(id__in=id_list)
+    return render(request, 'meals/detail.html',
+                  {'meal': meal,
+                   'wines': wines_meal_doesnt_have}
+                  )
 
 
 class MealCreate(LoginRequiredMixin, CreateView):
@@ -121,7 +128,7 @@ class MealCreate(LoginRequiredMixin, CreateView):
 class MealUpdate(LoginRequiredMixin, UpdateView):
     model = Meal
     # Let's disallow the renaming of a cat by excluding the name field!
-    fields = ['description', 'price', 'preparation_time', 'image']
+    fields = ['description', 'price', 'preparation_time', 'ingredients']
 
 
 class MealDelete(LoginRequiredMixin, DeleteView):
@@ -152,13 +159,12 @@ def send_email(request):
             message = form.cleaned_data['message']
 
             try:
-                send_mail(subject, message, from_email, ['admin@example.com'])
+                send_mail(subject, message, from_email, ['group3@gmail.com'])
 
             except BadHeaderError:
                 return HttpResponse('invalid header')
 
-            return redirect('contact:send_success')
-
+            return redirect('send_success')
 
     else:
         form = ContactForm()
@@ -171,7 +177,7 @@ def send_email(request):
 
 
 def send_success(request):
-    return HttpResponse('thanks you for you email ^_^')
+    return render(request, 'contact/success.html', {})
 
 
 def signup(request):
@@ -192,3 +198,88 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
+
+
+class ReservationsList(ListView):
+    model = Reservation
+
+    def get_queryset(self):
+        # Get the original queryset
+        queryset = super().get_queryset()
+        if self.request.user.is_staff:
+            return queryset
+        else:
+            return queryset.filter(user=self.request.user)
+
+
+class ReservationsDetail(DetailView):
+    model = Reservation
+
+
+class ReservationsCreate(CreateView):
+    model = Reservation
+    form_class = ReserveTableForm
+
+    def form_valid(self,form):
+        form.instance.user = self.request.user
+        form.instance.email = self.request.user.email
+        form.instance.name = f'{self.request.user.first_name} {self.request.user.last_name}'
+        return super().form_valid(form)
+
+
+    # def form_valid(self, form):
+    #     form.instance.user = self.request.user
+    #     form.instance.email = self.request.user.email
+    #     # form.instance.first_name = form.request.user.first_name
+    #     # form.instance.last_name = self.request.user.last_name
+    #     form.instance.name = self.request.user
+
+    #     return super().form_valid(form)
+
+
+class ReservationsUpdate(UpdateView):
+    model = Reservation
+    # add here what fields to update
+    fields = ['Date', 'time', 'name']
+
+
+class ReservationsDelete(DeleteView):
+    model = Reservation
+    success_url = '/reservations'
+
+
+def pair_wine(request, meal_id, wine_id):
+    meal = Meal.objects.get(id=meal_id)
+    meal.wines.add(wine_id)
+    return redirect('detail', meal_id=meal_id)
+
+
+def unpair_wine(request, meal_id, wine_id):
+    meal = Meal.objects.get(id=meal_id)
+    meal.wines.remove(wine_id)
+    return redirect('detail', meal_id=meal_id)
+
+
+class WineList(ListView):
+    # wine = Wine
+    def get_queryset(self):
+        return Wine.objects.all()
+
+
+class WineDetail(DetailView):
+    model = Wine
+
+
+class WineCreate(CreateView):
+    model = Wine
+    fields = '__all__'
+
+
+class WineUpdate(UpdateView):
+    model = Wine
+    fields = ['name', 'price']
+
+
+class WineDelete(DeleteView):
+    model = Wine
+    success_url = '/wines'

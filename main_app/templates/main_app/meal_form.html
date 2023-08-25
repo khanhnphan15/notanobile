@@ -1,19 +1,65 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
 {% block content %}
 
-{% if object %}
-  <h1>Edit <span class="teal-text">{{ object.name }}</span></h1>
-{% else %}
-  <h1>Add Meal</h1>
-{% endif %}
-  <!-- Leaving the action empty makes the form post to the same url used to display it -->
-  <form action="" method="POST">
-    <!-- Django requires the following for security purposes -->
-    {% csrf_token %}
-    <table>
-      <!-- Render the inputs inside of <tr>s & <td>s -->
-      {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit!" class="btn">
-  </form>
-{% endblock %}
+    <style>
+        .cover_1 {
+            background-image: url(https://projects-6-5.s3.us-east-2.amazonaws.com/projects-6-5/sam-moghadam-khamseh-kjrpdmHFZMs-unsplash.jpg);
+        }
+
+        {#.cover_1 h2 {#}
+        {#    padding-top: 250px;#}
+        {#}#}
+    </style>
+    <div class="main-wrap">
+        <div class="cover_1 cover_sm">
+            <div class="container">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-md-7" data-aos="fade-up">
+                            {% if object %}
+                                <h2 class="heading">Edit Meal: <span class="orange-text">{{ object.name }}</span></h2>
+                            {% else %}
+                                <h2 class="heading">Add Meal</h2>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+        </div> <!-- .cover_1 -->
+
+        <div class="section" data-aos="fade-up">
+            <div class="container">
+                <div class="row justify-content-center mb-5">
+                    <div class="col-md-8 text-center">
+                        {% if object %}
+                            <h2 class="mb-3">Edit Meal: <span class="orange-text">{{ object.name }}</span></h2>
+                        {% else %}
+                            <h2 class="mb-3">Introduce a New Dish</h2>
+                            <p>"Discover new tastes and experiences by adding a delightful dish to our menu."</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-10 p-5 form-wrap">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <table>
+                                <!-- Render the inputs inside of <tr>s & <td>s -->
+                                {{ form.as_table }}
+                            </table>
+                            <button type="submit" class="btn btn-primary">
+                                {% if object %}
+                                    Update Meal
+                                {% else %}
+                                    Add Dish
+                                {% endif %}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- .section -->
+
+    </div> <!-- .main-wrap -->
+
+{% endblock content %}

@@ -1,0 +1,42 @@
+# Compiled Python files
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+.env
+
+# Database
+db.sqlite3
+
+# Static files
+staticfiles/
+main_app/static/static/
+
+# Media files
+media/
+
+# Compiled CSS and JavaScript
+*.css.map
+*.js.map
+
+# Secret key
+*.secret_key
+
+# Logs
+*.log
+
+# Dependency directories
+lib/
+bin/
+
+# macOS files
+.DS_Store
+
+# Editor-specific files
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Environment variables
+.env

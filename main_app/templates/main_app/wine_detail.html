@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block content %}
+
+    <style>
+        {#.cover_1 h2 {#}
+        {#    padding-top: 160px;#}
+        {#}#}
+    </style>
+
+    <div class="main-wrap">
+        <div class="cover_1 cover_sm">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-7" data-aos="fade-up">
+                        <h2 class="heading">Wine Detail for {{ wine.name }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- .cover_1 -->
+
+        <div class="section" data-aos="fade-up">
+            <div class="container">
+                <div class="row justify-content-center mb-5">
+                    <div class="col-md-8 text-center">
+                        <h2 class="mb-3">{{ wine.name }}</h2>
+                        <p>"Indulge in the exquisite flavors and rich heritage of our wine selection."</p>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-10 p-5 form-wrap">
+                        <div class="wine-detail">
+                            <p>Name: {{ wine.name }}</p>
+                            <p>Type: {{ wine.type }}</p>
+                            <p>Age: {{ wine.age }}</p>
+                            <p>Price: {{ wine.price }}</p>
+                            <div class="wine-actions">
+                                <a href="{% url 'wine_update' wine.id %}" class="btn btn-primary">Edit</a>
+                                <a href="{% url 'wine_delete' wine.id %}" class="btn btn-danger">Delete Wine</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- .section -->
+
+        <div class="map-wrap" id="map" data-aos="fade"></div>
+    </div> <!-- .main-wrap -->
+
+{% endblock content %}
