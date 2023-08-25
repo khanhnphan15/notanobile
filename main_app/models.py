@@ -112,9 +112,6 @@ class Category(models.Model):
 
 class Reservation(models.Model):
     name = models.CharField(max_length=50)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-
     email = models.EmailField()
     phone = models.CharField()
     number_of_persons = models.IntegerField()

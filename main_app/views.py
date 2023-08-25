@@ -86,7 +86,7 @@ def aboutus_list(request):
     context = {
         'about': about,
         'why_choose_us': why_choose_us,
-        'chef': chef
+        'chef': chef,
     }
     return render(request, 'about.html', context)
 
@@ -218,11 +218,12 @@ class ReservationsDetail(DetailView):
 
 class ReservationsCreate(CreateView):
     model = Reservation
-    # form_class = ReserveTableFor
-    fields = ['name','first_name', 'last_name', 'Date','time','number_of_persons', 'email','phone']
+    form_class = ReserveTableForm
 
     def form_valid(self,form):
         form.instance.user = self.request.user
+        form.instance.email = self.request.user.email
+        form.instance.name = f'{self.request.user.first_name} {self.request.user.last_name}'
         return super().form_valid(form)
 
 

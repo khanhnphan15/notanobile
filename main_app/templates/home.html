@@ -84,27 +84,27 @@
 
         <div class="section pt-0 pb-0">
 
-            <div class="menus d-flex bg-light">
+            <div class="menus d-flex bg-light" style="margin: 0 70px;">
 
                 {% for meal in meals %}
-                    <div class="d-flex item">
+                    <div class="d-flex item" style="padding:25px; margin-bottom: 45px;">
                         {% if meal.image %}
                             <div class="image" style="background-image: url({{ meal.image.url }});"
                                  data-aos="fade"></div>
                         {% else %}
                             <!-- You can add some placeholder image or other content here -->
                         {% endif %}
-                        <div class="text">
+                        <div class="text" style="padding:25px; background-color: #7a8d4e">
                             <h3>{{ meal.name }}</h3>
                             <p>{{ meal.description|truncatewords:15 }}</p>
-                            <p class="price">${{ meal.price }}</p>
+                            <p class="price"style="">${{ meal.price }}</p>
                         </div>
-                    </div> <!-- .item -->
+                    </div>
                 {% endfor %}
 
 
             </div>
-        </div> <!-- .section -->
+        </div>
 
 
         <div class="section">
@@ -112,7 +112,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8" data-aos="fade-up">
 
-                        <h2 class="mb-5 text-center"style="font-family:'Open Sans'">Menu List with Price</h2>
+                        <h2 class="mb-5 text-center">Menu List with Price</h2>
 
                         <ul class="nav site-tab-nav" id="pills-tab" role="tablist">
                             {% for category in categories %}
@@ -134,7 +134,7 @@
                                      aria-labelledby="{{ category }}-tab">
 
                                     {% for meal in meals %}
-                                        <div class="d-flex item">
+                                        <div class="d-flex item" style="padding:25px; margin-bottom: 45px;">
                                             {% if meal.image %}
                                                 <div class="image" style="background-image: url({{ meal.image.url }});"
                                                      data-aos="fade"></div>

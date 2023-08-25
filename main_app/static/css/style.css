@@ -1,9 +1,12 @@
+* {
+    font-family: Montserrat !important;
+}
+
 html {
     overflow-x: hidden;
 }
 
 body {
-    font-family: "Open Sans";
     font-size: 16px;
     line-height: 1.8;
     font-weight: 300;
@@ -15,24 +18,22 @@ body {
     width: 100%;
     padding: 0;
     margin: 0;
-    font-family: "Open Sans";
 }
 
 .main-wrap {
-    background-image: url(https://images.unsplash.com/photo-1502301103665-0b95cc738daf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80%20464w,%20https://images.unsplash.com/photo-1502301103665-0b95cc738daf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80%20764w,%20https://images.unsplash.com/photo-1502301103665-0b95cc738daf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=928&q=80%20928w,%20https://images.unsplash.com/photo-1502301103665-0b95cc738daf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80%201064w,%20https://images.unsplash.com/photo-1502301103665-0b95cc738daf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80%201364w,%20https://images.unsplash.com/photo-1502301103665-0b95cc738daf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80%201528w,%20https://images.unsplash.com/photo-1502301103665-0b95cc738daf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1664&q=80%201664w,%20https://images.unsplash.com/photo-1502301103665-0b95cc738daf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80%201964w,%20https://images.unsplash.com/photo-1502301103665-0b95cc738daf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2128&q=80%202128w,%20https://images.unsplash.com/photo-1502301103665-0b95cc738daf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2264&q=80%202264w,%20https://images.unsplash.com/photo-1502301103665-0b95cc738daf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2564&q=80%202564w,%20https://images.unsplash.com/photo-1502301103665-0b95cc738daf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2728&q=80%202728w,%20https://images.unsplash.com/photo-1502301103665-0b95cc738daf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2864&q=80%202864w,%20https://images.unsplash.com/photo-1502301103665-0b95cc738daf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3024&q=80%203024w);
-    width: 100%;
+    background-image: url(https://projects-6-5.s3.us-east-2.amazonaws.com/projects-6-5/sebastian-coman-photography-UE7YA2igrxQ-unsplash.jpg);
     max-width: 100%;
     background-position: top center;
     background-repeat: no-repeat;
     /*background-size: contain;*/
     height: 679px;
-    background-position: center; /* centers the image both vertically and horizontally */
-    background-size: cover; /* scales the image to cover the entire element */
+    background-position: center;
+    background-size: cover;
 }
 
 .main-wrap::before {
-    content: ""; /* necessary for the pseudo-element to show */
-    position: absolute; /* takes the pseudo-element out of the document flow and positions it relative to the container */
+    content: "";
+    position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
@@ -102,7 +103,7 @@ textarea.form-control {
 
 .btn.btn-outline-primary {
     border-width: 2px;
-    color: #fdb44b;
+    color: #607139;
 }
 
 .btn.btn-outline-primary:hover, .btn.btn-outline-primary:focus, .btn.btn-outline-primary:active {
@@ -375,6 +376,11 @@ textarea.form-control {
 .media.media-bg-white .media-body {
     padding: 20px;
     background: #fff;
+}
+
+.media .media-body {
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .site-tab-nav {
@@ -975,7 +981,7 @@ textarea.form-control {
 }
 
 .section {
-    padding: 7em 0;
+    padding: 5em 0;
 }
 
 .text-muted {
@@ -1166,7 +1172,7 @@ textarea.form-control {
 
 .menus .item .text .price {
     font-size: 30px;
-    color: #fdb44b;
+    color: white;
     opacity: 1;
 }
 
@@ -1524,25 +1530,10 @@ textarea.form-control {
 
 .meal_img {
     width: 100% !important;
+
 }
 
-#test {
-    border: solid gray;
-    height: 113px;
-}
-
-#test {
-    border: solid antiquewhite;
-    border-radius: 32px;
-    /* height: 40px; */
-
-    /*! width: 215px; *//*! height: 100px; *//*! margin-left: 8px; */
-    padding: 7px;
-    background: antiquewhite;
-}
-
-
-#ingredients {
+textarea.form-control {
     background: #FFFDE4;
 }
 
@@ -1551,60 +1542,7 @@ textarea.form-control {
 }
 
 .container {
-    background: #dfdbd8;
-< < < < < < < Updated upstream
-}
-
-#meal_detail {
-    background: #e8e8e8;
-}
-
-#wine-paired {
-= = = = = = =
-}
-
-=
-=
-=
-=
-=
-=
-=
-=
-=
-=
-=
-=
-=
-=
-
-
-#test {
-    border: solid gray;
-    height: 113px;
-}
-
-#test {
-    border: solid antiquewhite;
-    border-radius: 32px;
-    /* height: 40px; */
-
-    /*! width: 215px; *//*! height: 100px; *//*! margin-left: 8px; */
-    padding: 7px;
-    background: antiquewhite;
-}
-
-
-#ingredients {
-    background: #FFFDE4;
-}
-
-#pair-wine {
-    background: #dad5d2;
-}
-
-.container {
-    background: #dfdbd8;
+    /*background: #dfdbd8;*/
 }
 
 #meal_detail {
@@ -1662,60 +1600,3 @@ textarea.form-control {
     flex: 1 1 auto;
     padding: 2.25rem;
 }
-
-#meal_detail {
-    background: #e8e8e8;
-}
-
-#wine-paired {
-    background: antiquewhite;
-    /* background: #dfdbd8; */
-}
-
-#unpair_btn {
-    margin-left: 486px;
-    border-radius: 32px;
-    width: 136px;
-    border-style: solid;
-    border: solid rgb(210, 139, 216);
-    border-style: inset;
-}
-
-#upload_img {
-    background: cover;
-    height: 75px;
-    width: 414px;
-    margin-left: 607px;
-    border-radius: 26px;
-    display: flex;
-}
-
-#btn_img {
-    border-radius: 28px;
-    height: 33px;
-    background: grey;
-}
-
-#edit_navbar {
-    background: cornsilk;
-    display: flex;
-    align-content: unsafe;
-    justify-content: flex-end;
-    height: 40px;
-    /* margin-left: 6px; */
-}
-
-.contain-edit {
-    height: 12px;
-}
-
-#chip-btn {
-    margin-top: -11px;
-}
-
-.card-body {
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-    padding: 2.25rem;
-}
-
