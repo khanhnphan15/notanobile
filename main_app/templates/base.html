@@ -17,9 +17,11 @@
 
 </head>
 <body>
+   
+
 <header class="navbar-fixed">
     <nav>
-        <div class="nav-wrapper">
+        <div class="nav-wrapper" style="background-color: #263238;">
             <ul>
                 <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Nota Nobile</a></li>
             </ul>
@@ -30,12 +32,15 @@
                 {% if user.is_authenticated %}
                     {% if not user.is_staff %}
                         <li><a href="{% url 'reservations_create' %}">Reserve A Table</a></li>
+                        <li><a href="{% url 'index' %}">Our Menu</a></li>
+
                     {% endif %}
                     <li><a href="{% url 'reservations_index' %}">Reservations</a></li>
                     <li><a href="{% url 'index' %}">Our Menu</a></li>
                     <li><a href="{% url 'send_email' %}">Contact</a></li>
 
                     {% if user.is_staff %}
+                        <li><a href="{% url 'reservations_create' %}">Reserve A Table</a></li>
                         <li><a href="{% url 'meals_create' %}">Add a meal</a></li>
                         <li><a href="{% url 'wine_index' %}"> Wine List 🍷</a></li>
                         <li><a href="{% url 'wine_create' %}"> Add Wine ➕</a></li>
@@ -57,7 +62,7 @@
     {% block content %}
     {% endblock content %}
 </main>
-<footer class="footer">
+<!-- <footer class="footer">
 <div class="container">
 <div class="row">
 
@@ -81,6 +86,6 @@
 </div>
 </div>
 </div>
-</footer>
+</footer> -->
 </body>
 </html>

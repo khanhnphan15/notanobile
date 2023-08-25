@@ -93,7 +93,8 @@ def aboutus_list(request):
 
 @login_required
 def meals_index(request):
-    meals = Meal.objects.filter(user=request.user)
+    meals = Meal.objects.all()
+
     return render(request, 'meals/index.html', {'meals': meals})
 
 
@@ -217,19 +218,28 @@ class ReservationsDetail(DetailView):
 
 class ReservationsCreate(CreateView):
     model = Reservation
-    form_class = ReserveTableForm
+    # form_class = ReserveTableFor
+    fields = ['name','first_name', 'last_name', 'Date','time','number_of_persons', 'email','phone']
 
-    def form_valid(self, form):
+    def form_valid(self,form):
         form.instance.user = self.request.user
-        form.instance.email = self.request.user.email
-        form.instance.name = f'{self.request.user.first_name} {self.request.user.last_name}'
         return super().form_valid(form)
+
+
+    # def form_valid(self, form):
+    #     form.instance.user = self.request.user
+    #     form.instance.email = self.request.user.email
+    #     # form.instance.first_name = form.request.user.first_name
+    #     # form.instance.last_name = self.request.user.last_name
+    #     form.instance.name = self.request.user
+
+    #     return super().form_valid(form)
 
 
 class ReservationsUpdate(UpdateView):
     model = Reservation
     # add here what fields to update
-    fields = ['Date', 'time']
+    fields = ['Date', 'time', 'name']
 
 
 class ReservationsDelete(DeleteView):
