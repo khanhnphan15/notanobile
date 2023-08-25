@@ -21,17 +21,18 @@ body {
 }
 
 .main-wrap {
-    background-image: url(https://projects-6-5.s3.us-east-2.amazonaws.com/projects-6-5/sebastian-coman-photography-UE7YA2igrxQ-unsplash.jpg);
     max-width: 100%;
-    background-position: top center;
-    background-repeat: no-repeat;
-    /*background-size: contain;*/
+}
+
+.cover_1 {
+    background-image: url(https://projects-6-5.s3.us-east-2.amazonaws.com/projects-6-5/sebastian-coman-photography-UE7YA2igrxQ-unsplash.jpg);
     height: 679px;
+    background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 
-.main-wrap::before {
+.cover_1::before {
     content: "";
     position: absolute;
     top: 0;
@@ -40,10 +41,8 @@ body {
     left: 0; /* these four properties make the pseudo-element cover the entire container */
     background-color: black; /* gives the pseudo-element a black color */
     opacity: 0.6; /* makes it semi-transparent, adjust value as desired, 0 is fully transparent, 1 is fully opaque */
-    margin-top: 64px;
     height: 679px;
 }
-
 
 a {
     -webkit-transition: .3s all ease;
@@ -1055,6 +1054,10 @@ textarea.form-control {
 .cover_1 {
     position: relative;
     height: 679px;
+}
+
+.cover_1 h2 {
+    padding: 280px 150px 0;
 }
 
 .cover_1 .lead {

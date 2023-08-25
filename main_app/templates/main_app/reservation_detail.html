@@ -4,49 +4,49 @@
 
 {% block content %}
 
-<div class="main-wrap">
-    <div class="cover_1 cover_sm">
-        <div class="img_bg" style="background-image: url({% static 'site_static/img/slider-1.jpg' %})"
-             data-stellar-background-ratio="0.5">
+    <div class="main-wrap">
+        <div class="cover_1 cover_sm">
             <div class="container">
                 <div class="row align-items-center justify-content-center">
                     <div class="col-md-7" data-aos="fade-up">
-                        <h2 class="heading">Reservation Details for <span class="orange-text">{{ reservation.name }}</span></h2>
+                        <h2 class="heading">Reservation Details for <span
+                                class="orange-text">{{ reservation.name }}</span></h2>
                     </div>
                 </div>
             </div>
-        </div>
-    </div> <!-- .cover_1 -->
+        </div> <!-- .cover_1 -->
 
-    <div class="section" data-aos="fade-up">
-        <div class="container">
-            <div class="row justify-content-center mb-5">
-                <div class="col-md-8  text-center">
-                    <h2 class="mb-3">Details for <span class="orange-text">{{ reservation.name }}</span></h2>
-                    <p>"Every reservation tells a story. Here's yours."</p>
+        <div class="section" data-aos="fade-up">
+            <div class="container">
+                <div class="row justify-content-center mb-5">
+                    <div class="col-md-8  text-center">
+                        <h2 class="mb-3">Details for <span class="orange-text">{{ reservation.name }}</span></h2>
+                        <p>"Every reservation tells a story. Here's yours."</p>
+                    </div>
                 </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-10 p-5 form-wrap">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ reservation.user.first_name }} {{ reservation.user.last_name }}</h5>
-                            <p class="card-text">Guests: {{ reservation.number_of_persons }}</p>
-                            <p class="card-text">Email: {{ reservation.email }}</p>
-                            <p class="card-text">Date: {{ reservation.Date }}</p>
-                            <p class="card-text">Time: {{ reservation.time }}</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="{% url 'reservations_update' reservation.id %}" class="btn btn-primary">Edit</a>
-                            <a href="{% url 'reservations_delete' reservation.id %}" class="btn btn-danger">Cancel Reservation</a>
+                <div class="row justify-content-center">
+                    <div class="col-md-10 p-5 form-wrap">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ reservation.user.first_name }} {{ reservation.user.last_name }}</h5>
+                                <p class="card-text">Guests: {{ reservation.number_of_persons }}</p>
+                                <p class="card-text">Email: {{ reservation.email }}</p>
+                                <p class="card-text">Date: {{ reservation.Date }}</p>
+                                <p class="card-text">Time: {{ reservation.time }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="{% url 'reservations_update' reservation.id %}"
+                                   class="btn btn-primary">Edit</a>
+                                <a href="{% url 'reservations_delete' reservation.id %}" class="btn btn-danger">Cancel
+                                    Reservation</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div> <!-- .section -->
+        </div> <!-- .section -->
 
-    <!-- You can add any additional sections or content as needed -->
+        <!-- You can add any additional sections or content as needed -->
 
-</div> <!-- .main-wrap -->
+    </div> <!-- .main-wrap -->
 {% endblock content %}
