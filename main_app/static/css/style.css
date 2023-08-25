@@ -1524,50 +1524,99 @@ textarea.form-control {
 
 .meal_img {
     width: 100% !important;
-<<<<<<< HEAD
-
 }
-=======
 
-
-
-#test{
+#test {
     border: solid gray;
     height: 113px;
 }
 
-#test{
+#test {
     border: solid antiquewhite;
     border-radius: 32px;
     /* height: 40px; */
 
-    /*! width: 215px; *//*! height: 100px; *//*! margin-left: 8px; */padding: 7px;
+    /*! width: 215px; *//*! height: 100px; *//*! margin-left: 8px; */
+    padding: 7px;
     background: antiquewhite;
-  }
-  
-  
-#ingredients{
+}
+
+
+#ingredients {
     background: #FFFDE4;
 }
 
-#pair-wine{
+#pair-wine {
     background: #dad5d2;
 }
 
 .container {
     background: #dfdbd8;
-  }
-  
-#meal_detail{
+< < < < < < < Updated upstream
+}
+
+#meal_detail {
     background: #e8e8e8;
 }
 
-#wine-paired{
+#wine-paired {
+= = = = = = =
+}
+
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+
+
+#test {
+    border: solid gray;
+    height: 113px;
+}
+
+#test {
+    border: solid antiquewhite;
+    border-radius: 32px;
+    /* height: 40px; */
+
+    /*! width: 215px; *//*! height: 100px; *//*! margin-left: 8px; */
+    padding: 7px;
+    background: antiquewhite;
+}
+
+
+#ingredients {
+    background: #FFFDE4;
+}
+
+#pair-wine {
+    background: #dad5d2;
+}
+
+.container {
+    background: #dfdbd8;
+}
+
+#meal_detail {
+    background: #e8e8e8;
+}
+
+#wine-paired {
     background: antiquewhite;
     /* background: #dfdbd8; */
 }
 
-#unpair_btn{
+#unpair_btn {
     margin-left: 486px;
     border-radius: 32px;
     width: 136px;
@@ -1576,7 +1625,7 @@ textarea.form-control {
     border-style: inset;
 }
 
-#upload_img{
+#upload_img {
     background: cover;
     height: 75px;
     width: 414px;
@@ -1585,13 +1634,13 @@ textarea.form-control {
     display: flex;
 }
 
-#btn_img{
+#btn_img {
     border-radius: 28px;
     height: 33px;
     background: grey;
 }
 
-#edit_navbar{
+#edit_navbar {
     background: cornsilk;
     display: flex;
     align-content: unsafe;
@@ -1602,27 +1651,71 @@ textarea.form-control {
 
 .contain-edit {
     height: 12px;
-  }
-  
-#chip-btn{
+}
+
+#chip-btn {
     margin-top: -11px;
 }
 
 .card-body {
-    -ms-flex:1 1 auto;
-    flex:1 1 auto;
-    padding:2.25rem;
-  }
-  
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 2.25rem;
+}
 
+#meal_detail {
+    background: #e8e8e8;
+}
 
+#wine-paired {
+    background: antiquewhite;
+    /* background: #dfdbd8; */
+}
 
+#unpair_btn {
+    margin-left: 486px;
+    border-radius: 32px;
+    width: 136px;
+    border-style: solid;
+    border: solid rgb(210, 139, 216);
+    border-style: inset;
+}
 
-  
+#upload_img {
+    background: cover;
+    height: 75px;
+    width: 414px;
+    margin-left: 607px;
+    border-radius: 26px;
+    display: flex;
+}
 
+#btn_img {
+    border-radius: 28px;
+    height: 33px;
+    background: grey;
+}
 
+#edit_navbar {
+    background: cornsilk;
+    display: flex;
+    align-content: unsafe;
+    justify-content: flex-end;
+    height: 40px;
+    /* margin-left: 6px; */
+}
 
-  
+.contain-edit {
+    height: 12px;
+}
 
+#chip-btn {
+    margin-top: -11px;
+}
 
->>>>>>> 4d2060c442884975b017c1bf416aeeaa40271de2
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 2.25rem;
+}
+
