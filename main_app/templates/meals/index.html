@@ -4,50 +4,61 @@
 
 {% block content %}
 
-<style>
-    {#.cover_1 h2 {#}
-    {#    padding-top: 250px;#}
-    {#}#}
-</style>
+    <style>
+        .meals-image-holder {
+            height: 234px;
+            overflow: hidden;
+            position: relative !important;
+        }
 
-<div class="main-wrap">
-    <!-- .cover_1 Header for the Meal List -->
-    <div class="cover_1 cover_sm">
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-md-7" data-aos="fade-up">
-                    <h2 class="heading">Meal List</h2>
+        .meals-image {
+            position: absolute !important;
+            top: -30% !important;
+        }
+    </style>
+
+    <div class="main-wrap">
+        <!-- .cover_1 Header for the Meal List -->
+        <div class="cover_1 cover_sm">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-7" data-aos="fade-up">
+                        <h2 class="heading">Meal List</h2>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="section" data-aos="fade-up">
-        <div class="container">
-            <div class="row">
+        <div class="section" data-aos="fade-up">
+            <div class="container">
+                <div class="col-md-12">
+                    <div class="row" style="margin: 0 100px;">
 
-                {% for meal in meals %}
-                    <div class="col-md-4 p-3"> <!-- Adjusted grid for 3 cards per row -->
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="{{ meal.image.url }}" alt="{{ meal.name }}" class="responsive-img">
-                                <span class="card-title">{{ meal.name }}</span>
+                        {% for meal in meals %}
+                            <div class="col-md-4 p-3">
+                                <!-- Adjusted grid for 3 cards per row -->
+                                <div class="card">
+                                    <div class="card-image meals-image-holder">
+                                        <img src="{{ meal.image }}" alt="{{ meal.name }}"
+                                             class="meals-image responsive-img">
+                                        <span class="card-title">{{ meal.name }}</span>
+                                    </div>
+                                    <div class="card-content" style="min-height: 191px;">
+                                        <p><strong>Description:</strong> {{ meal.description }}</p>
+                                        <p><strong>People:</strong> {{ meal.people }}</p>
+                                        <p><strong>Price:</strong> {{ meal.price }}</p>
+                                        <p><strong>Preparation time:</strong> {{ meal.preparation_time }}</p>
+                                    </div>
+                                    <div class="card-action">
+                                        <a href="{% url 'detail' meal.id %}">More Details</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-content">
-                                <p><strong>Description:</strong> {{ meal.description }}</p>
-                                <p><strong>People:</strong> {{ meal.people }}</p>
-                                <p><strong>Price:</strong> {{ meal.price }}</p>
-                                <p><strong>Preparation time:</strong> {{ meal.preparation_time }}</p>
-                            </div>
-                            <div class="card-action">
-                                <a href="{% url 'detail' meal.id %}">More Details</a>
-                            </div>
-                        </div>
+                        {% endfor %}
+
                     </div>
-                {% endfor %}
-
+                </div>
             </div>
-        </div>
-    </div> <!-- .section -->
-</div> <!-- .main-wrap -->
+        </div> <!-- .section -->
+    </div> <!-- .main-wrap -->
 {% endblock content %}

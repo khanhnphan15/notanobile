@@ -6,7 +6,8 @@
     <style>
         {#.cover_1 h2 {#}
         {#    padding-top: 250px;#}
-        {#}#}
+        {
+        #}#}
     </style>
 
     <div class="main-wrap">
@@ -24,9 +25,11 @@
     <div class="col-md-12" style="margin-top: 50px;">
         <div class="row">
             <div class="col-md-6">
-                <img style="width: 80%; margin: auto; display: block;" src="{{ about.image.url }}"
+                <img style="width: 80%; margin: auto; display: block;"
+                     src="https://projects-6-5.s3.us-east-2.amazonaws.com/projects-6-5/fallon-travels-q03ZLncun2Y-unsplash.jpg"
                      alt="{{ about.title }}" class="about-image">
             </div>
+
             <div class="col-md-6">
                 <h2 style=" display: block; margin: auto; text-align: center;">{{ about.title }}</h2>
                 <p style="display: block; margin-right: 48px; padding: 8px;">{{ about.content }}</p>
@@ -90,7 +93,7 @@
                 {% for one in chef %}
 
                     <div class="col-md-3" data-aos="fade-up" data-aos-delay="100" style="text-align: center;">
-                        <img src="{{ one.image.url }}" alt="Image placeholder" class="img-fluid mb-4 rounded">
+                        <img src="{{ one.image }}" alt="Image placeholder" class="img-fluid mb-4 rounded">
                         <h3 class="mb-3" style="font-family:'Open Sans'">{{ one.name }}</h3>
                         <p class="post-meta text-muted">{{ one.title }}</p>
                         <p class="mb-5">{{ one.bio }}</p>

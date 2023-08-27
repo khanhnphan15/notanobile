@@ -48,7 +48,7 @@ class Chef(models.Model):
     name = models.CharField(max_length=50)
     title = models.CharField(max_length=50)
     bio = models.TextField()
-    image = models.ImageField(upload_to='chef/')
+    image = models.CharField(max_length=500)
 
     class Meta:
         verbose_name = 'chef'
@@ -65,7 +65,7 @@ class Meal(models.Model):
     people = models.IntegerField()
     price = models.DecimalField(max_digits=5, decimal_places=2)
     preparation_time = models.IntegerField()
-    image = models.ImageField(upload_to='meals/')
+    image = models.CharField(max_length=500)
     ingredients = models.TextField(max_length=500)
     slug = models.SlugField(blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
@@ -113,7 +113,7 @@ class Category(models.Model):
 class Reservation(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField()
-    phone = models.CharField()
+    phone = models.CharField(max_length=50)
     number_of_persons = models.IntegerField()
     Date = models.DateField('Date')
     time = models.TimeField('Time')

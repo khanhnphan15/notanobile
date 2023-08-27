@@ -15,6 +15,8 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 from .form_contact import ContactForm
+from .form_meal import MealForm
+from .form_signup import SignupForm
 from datetime import date
 
 from django.shortcuts import get_object_or_404
@@ -49,11 +51,6 @@ def add_photo(request, meal_id):
             print(e)
 
     return redirect('detail', meal_id=meal_id)
-
-
-# Create your views here.
-# def home(request):
-#     return render(request, "home.html")
 
 
 def home(request):
@@ -111,7 +108,7 @@ def meals_detail(request, meal_id):
 
 class MealCreate(LoginRequiredMixin, CreateView):
     model = Meal
-    fields = ['name', 'description', 'price', 'people', 'preparation_time']
+    form_class = MealForm
 
     def get_success_url(self):
         return reverse('detail', kwargs={'meal_id': self.object.pk})
@@ -123,6 +120,31 @@ class MealCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user  # form.instance is the cat
         # Let the CreateView do its job as usual
         return super().form_valid(form)
+
+    def post(self, request, *args, **kwargs):
+        image_file = request.FILES.get('image_file')
+        # initialize our boto3 client
+        s3 = boto3.client('s3')
+        # key This is the unique key, or the location on aws s3 bucket where we store the file
+        key = 'project-6-5/' + uuid.uuid4().hex[:6] + image_file.name[image_file.name.rfind('.'):]
+        # [photo_file.name.rfind('.'):] grabs the file extension .jpeg, .gif, .png
+        # accessing an environment variable
+        bucket = os.environ['BUCKET_NAME']
+        # upload to s3
+        result = s3.upload_fileobj(image_file, bucket, key)
+        del request.FILES['image_file']
+        # build our url to save tin the database, this is the link to the image on aws s3
+        url = F"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+        # Save the Url to the photo model and add the fk for the cat
+        data = request.POST.copy()
+        data['image'] = url
+        request.POST = data
+        form = self.get_form()
+        if form.is_valid():
+            form.instance.image = url
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
 
 
 class MealUpdate(LoginRequiredMixin, UpdateView):
@@ -185,7 +207,7 @@ def signup(request):
     if request.method == 'POST':
         # This is how to create a 'user' form object
         # that includes the data from the browser
-        form = UserCreationForm(request.POST)
+        form = SignupForm(request.POST)
         if form.is_valid():
             # This will add the user to the database
             user = form.save()
@@ -195,7 +217,7 @@ def signup(request):
         else:
             error_message = 'Invalid sign up - try again'
     # A bad POST or a GET request, so render signup.html with an empty form
-    form = UserCreationForm()
+    form = SignupForm
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 

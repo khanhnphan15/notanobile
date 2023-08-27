@@ -83,9 +83,9 @@
             <div class="menus d-flex bg-light" style="margin: 0 70px;">
 
                 {% for meal in meals %}
-                    <div class="d-flex item" style="padding:25px; margin-bottom: 45px;">
+                    <div class="d-flex item" style="padding:25px; margin-bottom: 45px; min-height: 355px;">
                         {% if meal.image %}
-                            <div class="image" style="background-image: url({{ meal.image.url }});"
+                            <div class="image" style="background-image: url({{ meal.image }});"
                                  data-aos="fade"></div>
                         {% else %}
                         {% endif %}
@@ -131,7 +131,7 @@
                                     {% for meal in meals %}
                                         <div class="d-flex item" style="padding:25px; margin-bottom: 45px;">
                                             {% if meal.image %}
-                                                <div class="image" style="background-image: url({{ meal.image.url }});"
+                                                <div class="image" style="background-image: url({{ meal.image}});"
                                                      data-aos="fade"></div>
                                             {% else %}
                                                 <!-- You can add some placeholder image or other content here -->

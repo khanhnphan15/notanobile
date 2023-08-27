@@ -41,7 +41,7 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-10 p-5 form-wrap">
-                        <form action="" method="POST">
+                        <form action="/meals/create/" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <table>
                                 <!-- Render the inputs inside of <tr>s & <td>s -->

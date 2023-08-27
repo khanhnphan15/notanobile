@@ -12,6 +12,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="reservation",
             name="phone",
-            field=models.CharField(),
+            field=models.CharField(max_length=50),
         ),
     ]
