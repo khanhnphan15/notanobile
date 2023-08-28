@@ -90,7 +90,8 @@
                         {% else %}
                         {% endif %}
                         <div class="text" style="padding:25px; background-color: #7a8d4e">
-                            <h3>{{ meal.name }}</h3>
+{#                            <h3>{{ meal.name }}</h3>#}
+                            <a href="{% url 'detail' meal.id %}"><h3>{{ meal.name }}</h3></a>
                             <p>{{ meal.description|truncatewords:15 }}</p>
                             <p class="price" style="">${{ meal.price }}</p>
                         </div>

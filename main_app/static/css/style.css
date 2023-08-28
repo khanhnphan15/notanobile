@@ -1588,6 +1588,7 @@ textarea.form-control {
     align-content: unsafe;
     justify-content: flex-end;
     height: 40px;
+    margin-top: -78px;
     /* margin-left: 6px; */
 }
 
@@ -1603,6 +1604,20 @@ textarea.form-control {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     padding: 2.25rem;
+}
+
+#logo_br {
+    height: 58px;
+    border-radius: 18px;
+    width: 297px;
+    margin-top: -6px;
+    margin-left: 3px;
+}
+
+.name_ctr {
+    padding: 22px;
+    display: flex;
+    justify-content: center;
 }
 
 

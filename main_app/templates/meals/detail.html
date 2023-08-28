@@ -109,13 +109,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <h1>{{meal.name}}'s Details</h1>
-    <form action="{% url 'add_photo' meal.id %}" enctype="multipart/form-data" method="POST" class="card-panel" id="upload_img">
-        {% csrf_token %}
-        <input type="file" name="photo-file" id="input_btn">
-        <br><br>
-        <button type="submit" class="btn-primary" id="btn_img"><h4>Upload</h4></button>
-    </form>
+    <h1 class="name_ctr">{{meal.name}}'s Details</h1>
+{#    <form action="{% url 'add_photo' meal.id %}" enctype="multipart/form-data" method="POST" class="card-panel" id="upload_img">#}
+{#        {% csrf_token %}#}
+{#        <input type="file" name="photo-file" id="input_btn">#}
+{#        <br><br>#}
+{#        <button type="submit" class="btn-primary" id="btn_img"><h4>Upload</h4></button>#}
+{#    </form>#}
 
 
     <div class="row">
