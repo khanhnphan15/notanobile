@@ -37,7 +37,6 @@ def add_photo(request, meal_id):
         try:
             # accessing an environment variable
             bucket = os.environ['BUCKET_NAME']
-            # upload to s3
             s3.upload_fileobj(photo_file, bucket, key)
 
             # build our url to save tin the database, this is the link to the image on aws s3
@@ -217,7 +216,8 @@ def signup(request):
         else:
             error_message = 'Invalid sign up - try again'
     # A bad POST or a GET request, so render signup.html with an empty form
-    form = SignupForm
+    else:
+        form = SignupForm
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 
@@ -242,12 +242,26 @@ class ReservationsCreate(CreateView):
     model = Reservation
     form_class = ReserveTableForm
 
-    def form_valid(self,form):
+    def form_valid(self, form):
         form.instance.user = self.request.user
         form.instance.email = self.request.user.email
         form.instance.name = f'{self.request.user.first_name} {self.request.user.last_name}'
-        return super().form_valid(form)
 
+        # Call the parent class's form_valid to handle the model save and other operations
+        response = super().form_valid(form)
+
+        # After saving the reservation, send an email
+        subject = 'Your Reservation Confirmation'
+        message = f'Dear {self.request.user.first_name},\n\nYour reservation for {form.instance.Date} at {form.instance.time} has been confirmed.\n\nThank you for choosing us!'
+        from_email = 'noreply@yourdomain.com'
+        recipient_list = [self.request.user.email]
+
+        try:
+            send_mail(subject, message, from_email, recipient_list)
+        except BadHeaderError:
+            print("Error sending email. Invalid header detected.")
+
+        return response
 
     # def form_valid(self, form):
     #     form.instance.user = self.request.user

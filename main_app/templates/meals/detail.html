@@ -144,11 +144,11 @@
 
                 <div class="card-content" id="meal_detail">
 
-                    {% for photo in meal.photo_set.all %}
-                        <img class="responsive-img card-panel" src="{{ photo.url }}">
-                    {% empty %}
+                    {% if meal.image %}
+                        <img class="responsive-img card-panel" src="{{ meal.image }}">
+                    {% else %}
                         <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-                    {% endfor %}
+                    {% endif %}
                     <span class="card-title">{{ meal.name }}</span>
                     <p>Description: {{ meal.description }}</p>
                     <p>Price: {{ meal.price|linebreaks }}</p>

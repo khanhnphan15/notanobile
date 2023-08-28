@@ -15,7 +15,7 @@
                     <div class="row align-items-center justify-content-center">
                         <div class="col-md-7" data-aos="fade-up">
                             {% if object %}
-                                <h2 class="heading">Edit Reservation for {{ object.name }}</h2>
+                                <h2 class="heading">Edit Meal: <span class="orange-text">{{ object.name }}</span></h2>
                             {% else %}
                                 <h2 class="heading">Reservation</h2>
                             {% endif %}
@@ -30,7 +30,7 @@
                 <div class="row justify-content-center mb-5">
                     <div class="col-md-8  text-center">
                         {% if object %}
-                            <h2 class="mb-3">Edit Reservation for {{ object.name }}</h2>
+                            <h2 class="mb-3">Edit Reservation for <span class="orange-text">{{ object.name }}</span></h2>
                         {% else %}
                             <h2 class="mb-3">Make a Reservation</h2>
                             <p>"Reserve your seat at our table, where memories are made and flavors come to life."</p>
