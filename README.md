@@ -30,7 +30,8 @@ Navbar will show:
 ## Contact:
 ![img_11.png](img_11.png)
 ## Login as an Admin(staff): 
-Add a Wine List link, Add Wine link
+Navbar will show: 
+![img_16.png](img_16.png)
 ## Next Steps:
 Plans for the future:
 * Add a blog
