@@ -1,1 +1,1 @@
-from notanobile.settings.prod import *
+from notanobile.settings.local import *
