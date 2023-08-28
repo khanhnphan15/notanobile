@@ -32,7 +32,9 @@ Navbar will show:
 ## Login as an Admin(staff): 
 Navbar will show: 
 ![img_16.png](img_16.png)
-## Next Steps:
+### LINK here: 
+[Trello](https://trello.com/b/bGo59KtF/nota-nobile)
+## [Next Steps](https://notanobilekhanh.fly.dev/meals/)
 Plans for the future:
 * Add a blog
 * Re-format the meal card under Our Menu title
